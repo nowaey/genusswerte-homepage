@@ -1,0 +1,13 @@
+# Betriebssystem
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+*.swp
+*.swo
+
+# Temporäre Dateien
+*.tmp
+*.log
