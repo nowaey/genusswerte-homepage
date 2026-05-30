@@ -1364,6 +1364,617 @@
 }
 
 /* ---------------------------------------------------------
+   Tasting Page — Hero
+   --------------------------------------------------------- */
+.tasting-hero {
+  padding-block: var(--space-16) var(--space-20);
+}
+
+.tasting-hero__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+  min-height: 480px;
+}
+
+.tasting-hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 46ch;
+}
+
+.tasting-hero__headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--color-text);
+  margin: var(--space-2) 0 0;
+  max-width: 18ch;
+}
+
+.tasting-hero__body {
+  font-size: 1.0625rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 44ch;
+}
+
+.tasting-hero__actions {
+  margin-top: var(--space-4);
+}
+
+.tasting-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--color-green);
+  border: 1.5px solid var(--color-gold);
+  border-radius: var(--radius-btn);
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.tasting-hero__cta:hover,
+.tasting-hero__cta:focus-visible {
+  background-color: var(--color-gold);
+  color: var(--color-green-dark);
+  box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3);
+}
+
+.tasting-hero__meta {
+  margin-top: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-light);
+}
+
+.tasting-hero__image {
+  position: relative;
+  margin: 0;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 12px 40px rgba(45, 74, 62, 0.18), 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.tasting-hero__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 50%;
+  display: block;
+}
+
+/* ---------------------------------------------------------
+   Tasting Page — So funktioniert's
+   --------------------------------------------------------- */
+.how-it-works {
+  padding-block: var(--space-16);
+}
+
+.how-it-works__inner {
+  text-align: center;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.how-it-works__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-text);
+  margin: var(--space-3) 0 var(--space-10);
+  max-width: 30ch;
+  margin-inline: auto;
+}
+
+.how-it-works__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-10);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.how-it-works__step {
+  text-align: left;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.how-it-works__step-num {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--color-gold);
+}
+
+.how-it-works__step-title {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: var(--space-2) 0 var(--space-2);
+}
+
+.how-it-works__step-text {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ---------------------------------------------------------
+   Tasting Page — Card Meta
+   --------------------------------------------------------- */
+.tasting-card__meta {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.tasting-card__meta li {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--space-3);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.tasting-card__meta li span {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  align-self: center;
+}
+
+.tasting-card__btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ---------------------------------------------------------
+   Tasting Page — Noscript Fallback
+   --------------------------------------------------------- */
+.noscript-fallback {
+  max-width: 56ch;
+  margin: var(--space-10) auto 0;
+  padding: var(--space-6) var(--space-8);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  text-align: center;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+.noscript-fallback a {
+  color: var(--color-green);
+  font-weight: 500;
+  border-bottom: 1px solid var(--color-gold);
+}
+
+/* ---------------------------------------------------------
+   Tasting Page — Gruppen-Section
+   --------------------------------------------------------- */
+.group-section {
+  padding-block: var(--space-16);
+}
+
+.group-cta {
+  max-width: 56ch;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.group-cta__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.group-cta__body {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 48ch;
+}
+
+.group-cta__actions {
+  margin-top: var(--space-3);
+}
+
+.group-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--color-green);
+  border: 1.5px solid var(--color-gold);
+  border-radius: var(--radius-btn);
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.group-cta__btn:hover,
+.group-cta__btn:focus-visible {
+  background-color: var(--color-gold);
+  color: var(--color-green-dark);
+  box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3);
+}
+
+/* ---------------------------------------------------------
+   Tasting Modal — native <dialog>
+   --------------------------------------------------------- */
+.tasting-modal {
+  width: min(560px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+  color: var(--color-text);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25), 0 4px 16px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.tasting-modal::backdrop {
+  background: rgba(20, 14, 6, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.tasting-modal__form {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 2rem);
+}
+
+.tasting-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-7) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tasting-modal__eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-2);
+}
+
+.tasting-modal__title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.tasting-modal__close {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--color-text-muted);
+  background: transparent;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.tasting-modal__close:hover,
+.tasting-modal__close:focus-visible {
+  background-color: var(--color-bg-alt);
+  color: var(--color-text);
+}
+
+.tasting-modal__body {
+  padding: var(--space-6) var(--space-7);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.tasting-modal__description {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.tasting-modal__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
+}
+
+.tasting-modal__field {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tasting-modal__label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  padding: 0;
+}
+
+.tasting-modal__dates {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.tasting-modal__date {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.tasting-modal__date:hover {
+  border-color: var(--color-gold);
+}
+
+.tasting-modal__date input {
+  accent-color: var(--color-green);
+}
+
+.tasting-modal__date:has(input:checked) {
+  border-color: var(--color-gold);
+  background-color: var(--color-bg-alt);
+}
+
+.tasting-modal__date.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tasting-modal__date-label {
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.tasting-modal__seats {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-green);
+  font-weight: 500;
+}
+
+.tasting-modal__seats--full {
+  color: var(--color-text-light);
+}
+
+.tasting-modal__stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  align-self: flex-start;
+}
+
+.tasting-modal__step {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 50%;
+  font-size: 1.125rem;
+  color: var(--color-green);
+  background: transparent;
+  transition: border-color var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.tasting-modal__step:hover:not(:disabled),
+.tasting-modal__step:focus-visible:not(:disabled) {
+  border-color: var(--color-gold);
+  background-color: var(--color-bg-alt);
+}
+
+.tasting-modal__step:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tasting-modal__count {
+  min-width: 2ch;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.tasting-modal__hint {
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.tasting-modal__summary {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tasting-modal__summary-title {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin: 0 0 var(--space-2);
+}
+
+.tasting-modal__summary-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.tasting-modal__summary-list > div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: var(--space-3);
+  font-size: 0.9375rem;
+}
+
+.tasting-modal__summary-list dt {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  font-weight: 500;
+  align-self: center;
+}
+
+.tasting-modal__summary-list dd {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.tasting-modal__summary-total {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.tasting-modal__summary-total dd {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-green-dark);
+}
+
+.tasting-modal__notice {
+  background: var(--color-bg-alt);
+  border-left: 3px solid var(--color-gold);
+  border-radius: var(--radius-sm);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tasting-modal__notice p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+.tasting-modal__notice-link {
+  display: inline-flex;
+  align-self: flex-start;
+  color: var(--color-green);
+  font-weight: 500;
+  border-bottom: 1px solid var(--color-gold);
+  padding-bottom: 2px;
+}
+
+.tasting-modal__notice-link:hover,
+.tasting-modal__notice-link:focus-visible {
+  color: var(--color-green-light);
+}
+
+.tasting-modal__footer {
+  padding: var(--space-5) var(--space-7) var(--space-6);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-white);
+}
+
+.tasting-modal__buy {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-white);
+  background-color: var(--color-green);
+  border: 1.5px solid var(--color-green);
+  border-radius: var(--radius-btn);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.tasting-modal__buy:hover:not(:disabled),
+.tasting-modal__buy:focus-visible:not(:disabled) {
+  background-color: var(--color-green-light);
+  border-color: var(--color-green-light);
+  box-shadow: 0 4px 16px rgba(45, 74, 62, 0.3);
+}
+
+.tasting-modal__buy:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+body.has-modal-open {
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------
    Responsive — Tablet (max 1024px)
    --------------------------------------------------------- */
 @media (max-width: 1024px) {
@@ -1417,6 +2028,44 @@
   .contact-channel__value {
     white-space: normal;
     justify-self: start;
+  }
+
+  /* Tasting-Seite mobile */
+  .tasting-hero__split {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    min-height: 0;
+  }
+
+  .tasting-hero__image {
+    order: -1;
+    aspect-ratio: 4 / 3;
+    max-height: 380px;
+  }
+
+  .tasting-hero__headline {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
+  .how-it-works__steps {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .tasting-modal {
+    width: calc(100vw - 1rem);
+    max-height: calc(100vh - 1rem);
+    border-radius: var(--radius-sm);
+  }
+
+  .tasting-modal__header,
+  .tasting-modal__body,
+  .tasting-modal__footer {
+    padding-inline: var(--space-5);
+  }
+
+  .tasting-modal__summary-list > div {
+    grid-template-columns: 90px 1fr;
   }
 
   .redemption-layout {
