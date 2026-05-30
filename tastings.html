@@ -88,13 +88,13 @@
             </li>
             <li class="how-it-works__step">
               <span class="how-it-works__step-num">02</span>
-              <h3 class="how-it-works__step-title">Termin auswählen</h3>
-              <p class="how-it-works__step-text">Such dir aus den verfügbaren Terminen den passenden Abend aus.</p>
+              <h3 class="how-it-works__step-title">Gutschein kaufen</h3>
+              <p class="how-it-works__step-text">Wähle die Anzahl Personen und sichere dir den Tasting-Gutschein.</p>
             </li>
             <li class="how-it-works__step">
               <span class="how-it-works__step-num">03</span>
-              <h3 class="how-it-works__step-title">Gutschein per E-Mail</h3>
-              <p class="how-it-works__step-text">Du erhältst deinen Gutschein digital — bereit zum Verschenken oder Einlösen.</p>
+              <h3 class="how-it-works__step-title">Termin später einlösen</h3>
+              <p class="how-it-works__step-text">Den passenden Termin wählst du später bequem über <a href="gutschein-einloesen.html">Gutschein einlösen</a>.</p>
             </li>
           </ol>
         </div>
@@ -174,13 +174,7 @@
           <span data-modal-location></span>
         </div>
 
-        <!-- 1. Termin -->
-        <fieldset class="tasting-modal__field">
-          <legend class="tasting-modal__label">Termin auswählen</legend>
-          <div class="tasting-modal__dates" data-modal-dates role="radiogroup" aria-label="Verfügbare Termine"></div>
-        </fieldset>
-
-        <!-- 2. Personen -->
+        <!-- Anzahl Personen -->
         <fieldset class="tasting-modal__field">
           <legend class="tasting-modal__label">Anzahl Personen</legend>
           <div class="tasting-modal__stepper">
@@ -188,29 +182,33 @@
             <span class="tasting-modal__count" data-modal-count aria-live="polite">1</span>
             <button type="button" class="tasting-modal__step" data-modal-increment aria-label="Eine Person mehr">+</button>
           </div>
-          <p class="tasting-modal__hint" data-modal-stepper-hint></p>
+          <p class="tasting-modal__hint">Bis 6 Personen pro Gutschein. Für größere Runden ab 7 Personen nutze gerne unsere <a href="kontakt.html#gruppen-anfrage">Gruppenanfrage</a>.</p>
         </fieldset>
 
-        <!-- 3. Zusammenfassung -->
-        <div class="tasting-modal__summary" data-modal-summary aria-live="polite" hidden>
+        <!-- Zusammenfassung -->
+        <div class="tasting-modal__summary" data-modal-summary aria-live="polite">
           <h3 class="tasting-modal__summary-title">Zusammenfassung</h3>
           <dl class="tasting-modal__summary-list">
             <div><dt>Tasting</dt><dd data-summary-title></dd></div>
-            <div><dt>Termin</dt><dd data-summary-date></dd></div>
             <div><dt>Personen</dt><dd data-summary-persons></dd></div>
             <div class="tasting-modal__summary-total"><dt>Gesamt</dt><dd data-summary-total></dd></div>
           </dl>
         </div>
 
+        <!-- Hinweis: Terminwahl später -->
+        <p class="tasting-modal__redeem-hint">
+          <strong>Den Termin wählst du später</strong> &mdash; nach dem Kauf erhältst du deinen Gutschein per E-Mail und kannst ihn jederzeit über <a href="gutschein-einloesen.html">Gutschein einlösen</a> für einen verfügbaren Termin nutzen.
+        </p>
+
         <!-- Hinweis nach Klick auf "Gutschein kaufen" -->
         <div class="tasting-modal__notice" data-modal-notice hidden>
-          <p>Die Online-Zahlung wird in Kürze aktiviert. Deine Auswahl kannst du aktuell über Kontakt anfragen — wir bestätigen den Termin dann persönlich.</p>
+          <p>Die Online-Zahlung wird in Kürze aktiviert. Deine Auswahl kannst du aktuell über Kontakt anfragen &mdash; wir bestätigen sie dann persönlich.</p>
           <a href="kontakt.html" class="tasting-modal__notice-link">Zur Kontaktseite &rarr;</a>
         </div>
       </div>
 
       <footer class="tasting-modal__footer">
-        <button type="button" class="tasting-modal__buy" data-modal-buy disabled>Gutschein kaufen</button>
+        <button type="button" class="tasting-modal__buy" data-modal-buy>Gutschein kaufen</button>
       </footer>
     </form>
   </dialog>
