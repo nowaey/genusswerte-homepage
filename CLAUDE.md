@@ -1,292 +1,238 @@
 # CLAUDE.md — Genusswerte Bonn Homepage
 
-## Projektübersicht
+## Projekt
 
-Statische Homepage für Genusswerte Bonn, eine Feinkost-Boutique in Bonn-Poppelsdorf.
-Deploybar via FTP auf all-inkl.com. Kein Build-Tool, kein Backend, kein Framework.
+Statische Website für **Genusswerte Bonn**, eine hochwertige Feinkost- und Tasting-Boutique in Bonn-Poppelsdorf.
 
-**Tech-Stack:** Vanilla HTML · Vanilla CSS · Vanilla JavaScript
+Die Website soll zunächst als statische HTML/CSS/JS-Seite fertiggestellt werden und später mit einem separaten Admin-/Gutschein-System verbunden werden.
 
-**Seiten:**
-- `index.html` — Hauptseite
-- `gutschein-einloesen.html` — Gutschein-Einlöseformular
-- `impressum.html` — Platzhalter (Inhalt vom Betreiber ausfüllen)
-- `datenschutz.html` — Platzhalter (Inhalt vom Betreiber ausfüllen)
+**Tech-Stack Website:**
 
----
+* Vanilla HTML
+* Vanilla CSS
+* Vanilla JavaScript
+* Kein Framework
+* Kein Build-Tool
+* Deployment später via FTP / all-inkl.com
 
-## Bestätigte Geschäftsdaten
+## Seitenstruktur
 
-```
-Name:      Genusswerte Bonn
-Adresse:   Clemens-August-Straße 38–40, 53115 Bonn – Poppelsdorf
-Telefon:   0228 2590 8928
-WhatsApp:  https://wa.me/4922825908928
+Aktuelle bzw. geplante Seiten:
+
+* `index.html` — emotionale Startseite
+* `tastings.html` — Tasting-Erlebnisse
+* `gutscheine-boxen.html` — Gutscheine & Genussboxen
+* `gutschein-einloesen.html` — Gutschein einlösen
+* `kontakt.html` — Kontakt & Standort
+* `impressum.html`
+* `datenschutz.html`
+
+## Geschäftsdaten
+
+Name: Genusswerte Bonn
+Adresse: Clemens-August-Straße 38–40, 53115 Bonn – Poppelsdorf
+Telefon: 0228 2590 8928
 Instagram: @genusswerte.bonn
 
 Öffnungszeiten:
-  Mo  Geschlossen
-  Di  12:00 – 19:00
-  Mi  12:00 – 20:00
-  Do  10:00 – 21:00
-  Fr  10:00 – 21:00
-  Sa  10:00 – 21:00
-  So  Geschlossen
-```
 
----
+* Montag: geschlossen
+* Dienstag: 12:00 – 19:00
+* Mittwoch: 12:00 – 20:00
+* Donnerstag: 10:00 – 21:00
+* Freitag: 10:00 – 21:00
+* Samstag: 10:00 – 21:00
+* Sonntag: geschlossen
 
 ## Brand & Design
 
-**Claim:** Taste – Discover – Enjoy
-**Stil:** Premium Feinkost-Boutique — warm, elegant, hochwertig. Kein generisches Shopify-Look.
+Claim: **Taste – Discover – Enjoy**
 
-**Design-Tokens (`assets/css/base.css`):**
-```css
---color-bg:          #FAF7F2   /* Creme-Hintergrund */
---color-bg-alt:      #F2EDE4
---color-green:       #2D4A3E   /* Dunkelgrün, Primärfarbe */
---color-green-light: #3D6356
---color-green-dark:  #1A3028
---color-gold:        #C9A96E   /* Gold, Akzentfarbe */
---color-text:        #1A1A1A
---color-text-muted:  #6B6B6B
---color-white:       #FFFFFF
+Designziel:
+Die Seite soll hochwertig, warm, editorial und eigenständig wirken — nicht wie eine generische KI- oder Template-Website.
 
---font-serif: 'Playfair Display', Georgia, serif
---font-sans:  'Inter', system-ui, sans-serif
+Die Website soll Besuchern sofort das Gefühl geben:
+**„Wow, ich habe Lust auf ein Tasting.“**
 
---radius-card: 14px
---radius-btn:  8px
---max-width:   1200px
---section-gap: 5rem
-```
+Stilrichtung:
 
-**Logos:**
-- `assets/images/genusswerte_bonn_logo_transparent.png` — Header, Hero, Footer (schwarze Lineart auf transparent)
-- `assets/images/logo.png` — nur Favicon
-- Auf dunklem Hintergrund (Hero, Footer): `filter: brightness(0) invert(1)` für weiße Darstellung
+* Premium Feinkost-Boutique
+* Tasting-Erlebniswelt
+* Bonn-Poppelsdorf
+* warm, persönlich, hochwertig
+* modern, aber nicht generisch
+* nicht zu luxuriös
+* nicht verspielt
+* kein klassischer Shop-Look
 
----
+Visuelle Regeln:
 
-## Datei-Struktur
+* Dunkelgrün / Creme / dezentes Gold
+* keine Apple Emojis
+* keine generischen Standard-Cards
+* keine übergroßen Buttons
+* ruhige, bewusste Button-Hierarchie
+* editorialer Aufbau statt Baukasten-Optik
+* starke Bildwirkung
+* weiche, saubere Übergänge zwischen Sections
+* großzügiger, aber nicht leerer Weißraum
+* mobile Ansicht immer mitdenken
 
-```
-Genusswerte neue Hauptseite/
-├── index.html
-├── gutschein-einloesen.html
-├── impressum.html
-├── datenschutz.html
-├── .htaccess
-└── assets/
-    ├── images/
-    │   ├── genusswerte_bonn_logo_transparent.png
-    │   ├── logo.png
-    │   ├── hero-bg.png                  ← Hero-Hintergrundfoto
-    │   ├── tasting-wein.jpg             ← Echte Bilder von genusswerte.com
-    │   ├── tasting-afterwork.jpg
-    │   ├── tasting-gin.jpg
-    │   ├── tasting-champagner.jpg
-    │   ├── tasting-trueffel.png
-    │   ├── tasting-whisky.png
-    │   ├── tasting-craftbeer.jpg
-    │   ├── tasting-wagyu.jpg
-    │   ├── tasting-apero.jpg
-    │   ├── box-klassiker.svg            ← SVG-Platzhalter bis echte Fotos vorliegen
-    │   ├── box-bella-italia.svg
-    │   ├── box-aperitivo.svg
-    │   ├── box-bonn.svg
-    │   ├── box-date-night.svg
-    │   ├── box-feierabend.svg
-    │   └── placeholder-store.svg
-    ├── css/
-    │   ├── base.css        (Tokens, Reset, Typografie, Utilities)
-    │   ├── components.css  (Buttons, Cards, Steps, Forms, Animationsklassen)
-    │   └── layout.css      (Header, Hero, Sections, Grid, Footer, Responsive)
-    └── js/
-        ├── main.js         (Nav, Sticky Header, Smooth Scroll, Intro, Scroll-Animationen)
-        └── voucher-form.js (Validierung + Formspree Submit)
-```
+## Design-Tokens
 
----
+Die bestehenden CSS-Tokens in `assets/css/base.css` sollen weiterverwendet und nur behutsam angepasst werden.
 
-## CSS-Klassen Referenz
+Wichtige Farben:
 
-**Buttons:**
-- `.btn` — Basis
-- `.btn--primary` — Dunkelgrün gefüllt
-- `.btn--secondary` — Gold-Rahmen, grüner Text (auf hellem Hintergrund)
-- `.btn--ghost` — Weißer Rahmen, weißer Text (auf dunklem Hintergrund)
-- `.btn--hero-outline` — Gold-Rahmen, weißer Text (im Hero)
-- `.btn--whatsapp` — Grün mit WhatsApp-Icon, volle Breite (auf Karten)
-- `.btn--primary.btn--order` — „Bestellen"-Button auf Genussbox-Karten (ohne Funktion, öffnet Hinweis-Toast via `showOrderNote()`)
+* Creme-Hintergrund
+* Dunkelgrün als Primärfarbe
+* Gold als dezenter Akzent
+* Schwarz/Anthrazit für Text
 
-**Karten:**
-- `.card > .card__image + .card__body`
-- `.card__body > .card__eyebrow + .card__title + .card__description + .card__variants + .card__price + .card__action`
-- `.variant-pill` — Varianten-Chips
+Schriften:
 
-**Sections:**
-- `.section` / `.section--alt` / `.section--dark`
-- `.section__header > .section__eyebrow + .section__title + .section__subtitle`
-- `.card-grid` — `repeat(auto-fill, minmax(280px, 1fr))`
-- `.card-grid--4` — 4 Spalten
+* Serif für Headlines
+* Sans Serif für Navigation, Fließtext und UI
 
-**Animationen:**
-- `.js-animate` — Ausgangszustand (opacity 0, translateY 32px)
-- `.js-animate.is-visible` — Eingeblendet (wird per IntersectionObserver gesetzt)
-- `data-delay="1"–"9"` — Gestaffelte Transition-Delays für Grid-Karten
+## Technische Grenzen
 
----
+Nicht einbauen, außer ausdrücklich beauftragt:
 
-## JavaScript (`main.js`)
+* keine Stripe-Integration
+* keine Supabase-Integration
+* keine Resend-Integration
+* keine Admin-Panel-Anbindung
+* keine Backend-Logik
+* kein neues Framework
+* kein Build-Tool
+* keine Checkout-Logik
+* keine verbindliche Live-Terminbuchung
 
-Vier Funktionen in einem IIFE:
+Jetzt geht es zuerst um:
 
-| Funktion | Was sie tut |
-|---|---|
-| `initPageIntro()` | Zeigt weißen Splash-Screen mit Logo, blendet nach 1 s aus |
-| `initMobileNav()` | Hamburger-Toggle, ESC-Key, Outside-Click |
-| `initStickyHeader()` | Fügt `.is-scrolled` ab 60 px Scroll hinzu |
-| `initSmoothScroll()` | Sanftes Scrollen für alle `href="#..."` Links |
-| `initScrollAnimations()` | IntersectionObserver setzt `.is-visible` auf `.js-animate` Elementen |
+* Design
+* Struktur
+* UX
+* Texte
+* statische Vorbereitung
 
----
+## Spätere Systemlogik
 
-## Animations-Timing (Seitenaufruf)
+Die Website soll später mit einem separaten System verbunden werden:
 
-| Zeit | Ereignis |
-|---|---|
-| 0 ms | Weißer Splash-Screen, Logo erscheint |
-| ~150 ms | Logo skaliert ein (scale 0.82 → 1) |
-| 1000 ms | JS setzt `.is-done` auf Overlay → Fade-Out beginnt |
-| ~1550 ms | Overlay vollständig weg |
-| 1650 ms | Nav-Logo eingeblendet |
-| 1850 ms | Hero-Logo eingeblendet |
-| 1850–2250 ms | H1, Subline, CTAs blenden gestaffelt ein |
+* Admin Panel: React / Vite / TypeScript
+* Backend: Supabase
+* Zahlung: Stripe Checkout
+* E-Mail: Resend
 
----
+Späterer Ablauf:
 
-## Business-Logik
+1. Kunde kauft einen Tasting-Gutschein über die Website.
+2. Zahlung läuft über Stripe.
+3. Nach erfolgreicher Zahlung wird ein Gutscheincode erzeugt.
+4. Kunde erhält den Code per E-Mail.
+5. Kunde löst den Code auf der Website ein.
+6. Es werden verfügbare feste Tasting-Termine aus dem eigenen Kontingent angezeigt.
+7. Kunde wählt einen Termin.
+8. Platz wird blockiert.
+9. Kunde erhält eine Bestätigung / ein Ticket per E-Mail.
 
-Das Tasting-Buchungssystem wird vom Franchise-Partner betrieben.
-Diese Website darf **keine verbindlichen Terminbuchungen** anbieten.
+Wichtig:
+Diese Logik jetzt noch nicht technisch bauen.
+Die Website soll nur gestalterisch und strukturell darauf vorbereitet sein.
 
-Ablauf:
-1. Kunde kauft/fragt Tasting-Gutschein via WhatsApp an
-2. Kunde löst Gutschein über das Formular ein und nennt Wunschtermine
-3. Genusswerte Bonn prüft manuell und bestätigt persönlich
+## Gutschein- und Terminlogik
 
-**Niemals verwenden:** Jetzt buchen · Sofort buchen · Platz sichern · Verbindlich buchen · Termin buchen
+Keine alte Hauptlogik mit drei Wunschterminen mehr.
 
-**Immer verwenden:** Tasting-Gutschein kaufen · Gutschein einlösen · Wunschtermin anfragen · Termin nach Verfügbarkeit · Persönliche Bestätigung · Wir melden uns persönlich
+Neue Zielrichtung:
 
----
+* Gutscheincode eingeben
+* verfügbaren festen Termin auswählen
+* Bestätigung per E-Mail erhalten
 
-## Tasting-Gutscheine (9 Typen)
+Bis zur späteren technischen Anbindung darf die Einlöseseite statisch vorbereitet sein, aber sie soll sprachlich bereits zur späteren festen Terminwahl passen.
 
-| Tasting | Varianten | ab Preis |
-|---|---|---|
-| Wein Tasting | Klassisch / Alkoholfrei / Naturwein / Vegan | 29,00 € |
-| Afterwork Wein Tasting | 1 / 2 Personen | 19,00 € |
-| Gin Tasting | 1 / 2 Personen | 45,00 € |
-| Champagner & Popcorn | 1 / 2 Personen | 39,00 € |
-| Trüffel & Champagner | 1 / 2 Personen | 66,00 € |
-| Whisky Tasting | 1 / 2 Personen | 45,00 € |
-| Craft Beer Tasting | 1 / 2 Personen | 25,00 € |
-| Wagyu, Wein & Champagner | 1 / 2 Personen | 55,00 € |
-| Apéro & Antipasti | Klassisch / Alkoholfrei | 29,00 € |
+Vermeiden:
 
-**Button-Text:** „Tasting-Gutschein kaufen" → öffnet WhatsApp mit vorausgefüllter Nachricht
+* „3 Wunschtermine“
+* „Wunschtermin anfragen“ als zentrale Hauptlogik
+* Formulierungen, die nach manueller Notlösung wirken
 
----
+Besser:
 
-## Genussboxen (6 Typen, feste Preise)
+* „Gutschein einlösen“
+* „Termin zur Einlösung auswählen“
+* „Verfügbare Termine“
+* „Bestätigung per E-Mail“
 
-| Box | Klein | Medium | Groß |
-|---|---|---|---|
-| Der Deutsche Klassiker | 29,90 € | 49,90 € | 79,90 € |
-| Bella Italia Box | 34,90 € | 54,90 € | 89,90 € |
-| Aperitivo Box | 34,90 € | 57,90 € | 89,90 € |
-| Bonn Probierbox | 27,90 € | 44,90 € | 74,90 € |
-| Date Night Box | 39,90 € | 64,90 € | 99,90 € |
-| Feierabend Box | 24,90 € | 42,90 € | 67,90 € |
+## Tastings
 
-**Preise sind Platzhalter** — vor Launch bestätigen!
-**Button-Text:** „Bestellen" (V1 ohne Funktion — öffnet Hinweis-Toast mit WhatsApp-Link via `showOrderNote()`)
+Tastings sind der emotionale Hauptanker der Website.
 
----
+Die Startseite soll Lust auf Tastings machen, nicht wie ein Gutscheinportal wirken.
 
-## WhatsApp-Nachrichten
+Tasting-Seite:
 
-**Basis-URL:** `https://wa.me/4922825908928?text=...`
+* Erlebnis editorial vorstellen
+* keine reine Produktliste
+* Atmosphäre, Genuss, Wein, Feinkost und gemeinsame Abende betonen
+* Gruppen ab 7 Personen als Anfrage darstellen
 
-**Tasting-Gutschein:**
-```
-Hallo Genusswerte Bonn,
+## Genussboxen
 
-ich möchte einen Tasting-Gutschein.
+Genussboxen sind wichtig, aber nicht der Hauptanker der Startseite.
 
-Tasting: [NAME]
-Variante:
-Personenanzahl:
-Name:
-E-Mail:
-Gewünschte Zustellung: digital / Abholung im Laden
-Nachricht:
-```
+Sie gehören auf die Seite:
+`gutscheine-boxen.html`
 
-**Genussbox:**
-```
-Hallo Genusswerte Bonn,
+Genussboxen bleiben zunächst Anfrage-/manuelle Produkte.
+Keinen automatischen Checkout für Genussboxen bauen, außer ausdrücklich beauftragt.
 
-ich möchte bestellen: [BOX NAME]
+## UX-Regeln
 
-Größe:
-Gewünschter Anlass:
-Abholung oder Versand:
-Name:
-Nachricht:
-```
+Navigation:
 
----
+* Tastings
+* Genussboxen / Gutscheine & Boxen
+* Kontakt
+* Gutschein einlösen
 
-## Gutschein-Einlöseformular
+Startseite:
 
-**Datei:** `gutschein-einloesen.html`
-**Formspree-Endpoint:** `https://formspree.io/f/REPLACE_ME` ← vor Launch ersetzen!
+* emotionaler Hero
+* Tastings deutlich sichtbar
+* Feinkost-Boutique erklären
+* Standort dezent zeigen
+* klare CTA-Führung
 
-Felder: Gutscheincode · Gutscheinart · Name · E-Mail · Telefon (optional) · Gewünschtes Tasting · Wunschtermin 1–3 · Personenanzahl · Nachricht
+Buttons:
 
-Datenschutz-Hinweis unter dem Formular ist Pflicht (DSGVO).
+* nicht zu groß
+* nicht zu viele gleichwertige CTAs
+* klare Hierarchie
+* Hauptaktion auf Startseite: Tastings entdecken
+* Gutschein einlösen sekundär, aber sichtbar
 
----
+Cards:
 
-## Vor dem Launch — Checkliste
+* keine generischen Standard-Kacheln
+* weniger Template-Look
+* mehr Editorial-/Magazin-Anmutung
+* Bilder und Texte hochwertig inszenieren
 
-- [ ] Formspree-Endpoint in `gutschein-einloesen.html` ersetzen (`REPLACE_ME`)
-- [ ] Box-Preise bestätigen (aktuell Platzhalter)
-- [ ] Impressum-Inhalt ausfüllen (`impressum.html`)
-- [ ] Datenschutzerklärung ausfüllen (`datenschutz.html`) — Generator: datenschutz-generator.de
-- [ ] Echte Produktfotos für Genussboxen einbinden (SVGs ersetzen)
-- [ ] WhatsApp-Nummer verifizieren: `4922825908928`
-- [ ] Alle `<!-- REPLACE -->` Kommentare im HTML prüfen
-- [ ] Mobile-Test: 320 px, 375 px, 768 px
-- [ ] Desktop-Test: 1024 px, 1440 px
+## Arbeitsweise
 
----
+Immer step-by-step arbeiten.
 
-## Deployment
+Nicht ungefragt das komplette Projekt umbauen.
+Nur den konkret beauftragten Bereich ändern.
 
-**Ziel:** all-inkl.com via FTP (FileZilla)
-**Kein Build-Schritt** — alle Dateien direkt hochladen.
+Nach Änderungen kurz erklären:
 
-Upload-Inhalt:
-```
-index.html
-gutschein-einloesen.html
-impressum.html
-datenschutz.html
-.htaccess
-assets/
-```
+* welche Dateien geändert wurden
+* was verbessert wurde
+* was bewusst nicht geändert wurde
+* was als nächster kleiner Schritt sinnvoll wäre
+
+Keine großen neuen Features ohne ausdrücklichen Auftrag.
