@@ -610,6 +610,11 @@
   object-position: center 50%;
 }
 
+.tasting-loop__slide:nth-child(3) img {
+  /* Passimoncello: zentriert, leicht auf die Mitte fokussiert */
+  object-position: center 45%;
+}
+
 /* Label als eingebettetes Overlay am unteren Bildrand */
 .tasting-loop__label {
   position: absolute;
