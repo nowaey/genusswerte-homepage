@@ -149,17 +149,46 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  background-color: #1a1208;
-  background-image:
-    linear-gradient(to bottom, rgba(12, 10, 4, 0.42) 0%, rgba(6, 5, 2, 0.62) 100%),
-    url('../images/hero-bg.png');
+  background-color: #120d05;
+}
+
+/* Gradient overlay (über dem Bild, unter dem Content) */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(10, 7, 2, 0.68) 0%,
+      rgba(8, 6, 2, 0.22) 30%,
+      rgba(8, 6, 2, 0.48) 65%,
+      rgba(6, 4, 1, 0.88) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Hintergrundbild mit Ken Burns Effekt */
+.hero__bg {
+  position: absolute;
+  inset: -8%;
+  background-image: url('../images/hero-bg.png');
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-position: center 35%;
+  animation: kenBurns 26s ease-in-out infinite alternate;
+  z-index: 0;
+  will-change: transform;
+}
+
+@keyframes kenBurns {
+  from { transform: scale(1) translate(0, 0); }
+  to   { transform: scale(1.06) translate(-1.5%, -1%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero { background-attachment: scroll; }
+  .hero__bg {
+    animation: none;
+    inset: 0;
+  }
 }
 
 .hero__content {
@@ -192,16 +221,6 @@
   animation: heroFadeIn 1s ease 1.65s both;
 }
 
-.hero__headline {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 4.25rem);
-  font-weight: 700;
-  color: var(--color-white);
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.85s both;
-}
-
 .hero__subline {
   font-family: var(--font-sans);
   font-size: clamp(1rem, 2vw, 1.25rem);
@@ -209,7 +228,22 @@
   color: var(--color-gold);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 2.05s both;
+  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.82s both;
+}
+
+.hero__headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.98s both;
+}
+
+.hero__headline em {
+  font-style: italic;
+  font-weight: 500;
 }
 
 .hero__cta-group {
@@ -218,7 +252,7 @@
   gap: var(--space-4);
   justify-content: center;
   margin-top: var(--space-2);
-  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.25s both;
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.18s both;
 }
 
 .hero__scroll-hint {
@@ -226,6 +260,7 @@
   bottom: var(--space-8);
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -274,7 +309,7 @@
 }
 
 .section__header {
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-16);
 }
 
 .section__header.text-center {
@@ -286,7 +321,9 @@
 }
 
 .section__eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: var(--font-sans);
   font-size: 0.6875rem;
   font-weight: 700;
@@ -296,8 +333,37 @@
   margin-bottom: var(--space-3);
 }
 
+.section__eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+/* Centered sections: Line nicht anzeigen */
+.text-center .section__eyebrow {
+  display: inline-block;
+}
+
+.text-center .section__eyebrow::before {
+  display: none;
+}
+
 .section--dark .section__eyebrow {
   color: var(--color-gold-light);
+  display: inline-block;
+}
+
+.section--dark .section__eyebrow::before {
+  display: none;
+}
+
+.page-hero .section__eyebrow,
+.cta-band .section__eyebrow {
+  display: inline-block;
 }
 
 .section__title {
@@ -309,8 +375,8 @@
 .section__subtitle {
   font-size: 1.0625rem;
   color: var(--color-text-muted);
-  line-height: 1.7;
-  max-width: 56ch;
+  line-height: 1.75;
+  max-width: 54ch;
 }
 
 /* ---------------------------------------------------------
@@ -540,7 +606,10 @@
    Page Hero (gutschein-einloesen.html compact hero)
    --------------------------------------------------------- */
 .page-hero {
-  background-color: var(--color-green);
+  background: linear-gradient(135deg,
+    var(--color-green-dark) 0%,
+    var(--color-green) 60%,
+    var(--color-green-light) 100%);
   padding-block: var(--space-16) var(--space-12);
   text-align: center;
   display: flex;
@@ -820,7 +889,6 @@
 
   /* Hero */
   .hero {
-    background-attachment: scroll;
     min-height: 100svh;
   }
 
