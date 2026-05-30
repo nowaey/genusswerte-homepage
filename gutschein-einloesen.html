@@ -44,8 +44,9 @@
         </button>
 
         <ul class="nav__menu" id="nav-menu" role="list">
-          <li><a href="gutscheine-boxen.html" class="nav__link">Gutscheine &amp; Boxen</a></li>
-          <li><a href="index.html#standort" class="nav__link">Standort</a></li>
+          <li><a href="tastings.html" class="nav__link">Tastings</a></li>
+          <li><a href="gutscheine-boxen.html" class="nav__link">Genussboxen</a></li>
+          <li><a href="kontakt.html" class="nav__link">Kontakt</a></li>
           <li class="nav__cta">
             <a href="gutschein-einloesen.html" class="btn btn--primary" aria-current="page">Gutschein einlösen</a>
           </li>
@@ -64,7 +65,7 @@
            alt="Genusswerte Bonn" class="page-hero__logo" width="130" height="39">
       <span class="page-hero__eyebrow">Tasting-Gutschein</span>
       <h1 class="page-hero__title">Deinen Gutschein einlösen</h1>
-      <p class="page-hero__subtitle">Wunschtermin anfragen &mdash; wir melden uns persönlich bei Dir.</p>
+      <p class="page-hero__subtitle">Gutscheincode eingeben &mdash; wir best&auml;tigen deinen Termin pers&ouml;nlich.</p>
     </div>
 
     <!-- =====================================================
@@ -72,36 +73,36 @@
          ===================================================== -->
     <section class="section section--alt" aria-label="Ablauf">
       <div class="container">
-        <ol class="steps" role="list" aria-label="So läuft die Terminanfrage ab">
+        <ol class="steps" role="list" aria-label="So läuft die Einlösung ab">
 
           <li class="step">
             <div class="step__number" aria-hidden="true">1</div>
             <div class="step__text">
-              <h2 class="step__title">Formular ausfüllen</h2>
-              <p class="step__body">Trage Deinen Gutscheincode, Deine Kontaktdaten und bis zu drei Wunschtermine ein.</p>
+              <h2 class="step__title">Gutscheincode &amp; Tasting eingeben</h2>
+              <p class="step__body">Trage deinen Gutscheincode, dein gew&uuml;nschtes Tasting und deine Kontaktdaten ein.</p>
             </div>
           </li>
 
           <li class="step">
             <div class="step__number" aria-hidden="true">2</div>
             <div class="step__text">
-              <h2 class="step__title">Wir prüfen die Verfügbarkeit</h2>
-              <p class="step__body">Kein automatisches System — wir schauen persönlich in den Terminkalender.</p>
+              <h2 class="step__title">Termin angeben</h2>
+              <p class="step__body">Nenne uns deinen bevorzugten Termin. Bald werden hier verf&uuml;gbare feste Termine direkt angezeigt.</p>
             </div>
           </li>
 
           <li class="step">
             <div class="step__number" aria-hidden="true">3</div>
             <div class="step__text">
-              <h2 class="step__title">Persönliche Bestätigung</h2>
-              <p class="step__body">Du erhältst eine persönliche Rückmeldung von uns per E-Mail oder Telefon. Dann kann's losgehen!</p>
+              <h2 class="step__title">Best&auml;tigung per E-Mail</h2>
+              <p class="step__body">Wir best&auml;tigen deinen Termin pers&ouml;nlich. Sp&auml;ter erh&auml;ltst du automatisch ein Ticket zum Ausdrucken.</p>
             </div>
           </li>
 
         </ol>
 
         <div class="text-center" style="margin-top: 2.5rem;">
-          <span class="availability-note">Termin nach Verfügbarkeit — persönliche Bestätigung</span>
+          <span class="availability-note">Pers&ouml;nliche Terminbest&auml;tigung</span>
         </div>
 
       </div>
@@ -120,7 +121,7 @@
             <div class="redemption-form-wrapper">
 
               <div>
-                <h2 style="font-family: var(--font-serif); font-size: 1.75rem; color: var(--color-green); margin-bottom: 0.5rem;">Wunschtermin anfragen</h2>
+                <h2 style="font-family: var(--font-serif); font-size: 1.75rem; color: var(--color-green); margin-bottom: 0.5rem;">Termin zur Einl&ouml;sung anfragen</h2>
                 <p style="color: var(--color-text-muted); font-size: 0.9375rem;">Felder mit <span style="color: #C0392B;">*</span> sind Pflichtfelder.</p>
               </div>
 
@@ -203,28 +204,15 @@
                   </select>
                 </div>
 
-                <!-- Wunschtermine -->
-                <fieldset style="border: none; padding: 0; margin: 0;">
-                  <legend class="form-label" style="margin-bottom: 0.75rem;">
-                    Wunschtermine <span class="required-mark" aria-hidden="true">*</span>
-                    <span class="form-hint" style="font-weight: 400; display: block; margin-top: 0.25rem;">Bitte nenne uns bis zu drei Alternativen — wir bestätigen nach Verfügbarkeit.</span>
-                  </legend>
-                  <div class="form-grid form-grid--dates">
-                    <div class="form-group">
-                      <label class="form-label" for="termin-1">Wunschtermin 1 <span class="required-mark" aria-hidden="true">*</span></label>
-                      <input class="form-input" type="date" id="termin-1" name="wunschtermin1"
-                             required aria-required="true">
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label" for="termin-2">Wunschtermin 2</label>
-                      <input class="form-input" type="date" id="termin-2" name="wunschtermin2">
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label" for="termin-3">Wunschtermin 3</label>
-                      <input class="form-input" type="date" id="termin-3" name="wunschtermin3">
-                    </div>
-                  </div>
-                </fieldset>
+                <!-- Bevorzugter Termin -->
+                <div class="form-group">
+                  <label class="form-label" for="termin">
+                    Bevorzugter Termin <span class="required-mark" aria-hidden="true">*</span>
+                  </label>
+                  <input class="form-input" type="date" id="termin" name="wunschtermin"
+                         required aria-required="true">
+                  <span class="form-hint">Sp&auml;ter werden hier verf&uuml;gbare feste Termine angezeigt. Aktuell pr&uuml;fen wir deinen Gutschein und best&auml;tigen dir den passenden Termin pers&ouml;nlich.</span>
+                </div>
 
                 <!-- Personenanzahl -->
                 <div class="form-group">
@@ -252,7 +240,7 @@
 
                 <!-- Submit -->
                 <button class="btn btn--primary" type="submit" style="width: 100%; justify-content: center; padding: 1rem;">
-                  Wunschtermin anfragen
+                  Termin zur Einl&ouml;sung anfragen
                 </button>
 
                 <!-- Privacy note -->
@@ -269,8 +257,8 @@
 
             <div class="sidebar-block">
               <h3>Wichtiger Hinweis</h3>
-              <p>Das Absenden dieses Formulars ist <strong>keine verbindliche Terminbuchung</strong>. Wir prüfen Deine Wunschtermine und melden uns persönlich bei Dir.</p>
-              <span class="availability-note" style="margin-top: 0.5rem;">Termin nach Verfügbarkeit</span>
+              <p>Das Absenden dieses Formulars ist <strong>keine verbindliche Terminbuchung</strong>. Wir pr&uuml;fen deinen Gutschein und melden uns pers&ouml;nlich mit einer Terminbest&auml;tigung.</p>
+              <span class="availability-note" style="margin-top: 0.5rem;">Pers&ouml;nliche Best&auml;tigung</span>
             </div>
 
             <div class="sidebar-block">
@@ -321,10 +309,10 @@
         <div class="footer__col">
           <h4>Navigation</h4>
           <nav class="footer__nav" aria-label="Footer Navigation">
-            <a href="gutscheine-boxen.html#tastings">Tasting-Gutscheine</a>
+            <a href="tastings.html">Tastings</a>
             <a href="gutscheine-boxen.html#genussboxen">Genussboxen</a>
             <a href="gutschein-einloesen.html">Gutschein einlösen</a>
-            <a href="index.html#standort">Standort</a>
+            <a href="kontakt.html">Kontakt</a>
             <a href="https://www.instagram.com/genusswerte.bonn/" target="_blank" rel="noopener noreferrer">Instagram</a>
           </nav>
         </div>
