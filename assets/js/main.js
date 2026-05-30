@@ -112,6 +112,20 @@
     elements.forEach(function (el) { observer.observe(el); });
   }
 
+  /* --- Tasting Image Loop -------------------------------- */
+  function initTastingLoop() {
+    var slides = document.querySelectorAll('.tasting-loop__slide');
+    if (slides.length < 2) return;
+
+    var current = 0;
+
+    setInterval(function () {
+      slides[current].classList.remove('is-active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('is-active');
+    }, 4500);
+  }
+
   /* --- Init on DOM ready -------------------------------- */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
@@ -125,5 +139,6 @@
     initStickyHeader();
     initSmoothScroll();
     initScrollAnimations();
+    initTastingLoop();
   }
 })();
