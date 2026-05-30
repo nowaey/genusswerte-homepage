@@ -625,43 +625,92 @@
 }
 
 /* ---------------------------------------------------------
-   CTA Band (dark sections)
+   Closing CTA — kompakter Abschlussblock vor dem Footer
    --------------------------------------------------------- */
-.cta-band {
+.closing-cta {
+  padding-block: var(--space-16);
+  position: relative;
+}
+
+/* Weicher Übergang vom hellen Standortbereich nach Dunkelgrün */
+.closing-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+  opacity: 0.5;
+}
+
+.closing-cta__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-6);
+  gap: var(--space-4);
+  max-width: 56ch;
+  margin-inline: auto;
 }
 
-.cta-band__eyebrow {
-  font-size: 0.75rem;
+.closing-cta__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-gold-light);
 }
 
-.cta-band__title {
+.closing-cta__title {
   font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   color: var(--color-white);
-  max-width: 18ch;
+  margin: 0;
+  max-width: 22ch;
 }
 
-.cta-band__subtitle {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.75);
-  max-width: 48ch;
+.closing-cta__subtitle {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 50ch;
 }
 
-.cta-band__actions {
+.closing-cta__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-4);
+  gap: var(--space-5);
+  align-items: center;
   justify-content: center;
-  margin-top: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.closing-cta__primary {
+  /* Primärer Tasting-CTA — basiert auf btn--hero-outline */
+}
+
+.closing-cta__link {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding-bottom: 2px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.closing-cta__link:hover,
+.closing-cta__link:focus-visible {
+  color: var(--color-white);
+  border-bottom-color: var(--color-gold);
 }
 
 /* ---------------------------------------------------------
@@ -1104,49 +1153,60 @@
    Site Footer
    --------------------------------------------------------- */
 .site-footer {
-  background-color: var(--color-green);
+  background-color: var(--color-green-dark);
   color: var(--color-white);
-  padding-block: var(--space-16) var(--space-8);
+  padding-block: var(--space-12) var(--space-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  gap: var(--space-12);
-  padding-bottom: var(--space-10);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  gap: var(--space-10);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer__logo {
-  width: 140px;
+  width: 120px;
   height: auto;
   filter: brightness(0) invert(1);
-  opacity: 0.9;
-  margin-bottom: var(--space-5);
+  opacity: 0.85;
+  margin-bottom: var(--space-4);
 }
 
 .footer__tagline {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.65;
   max-width: 32ch;
 }
 
 .footer__address {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.55);
   line-height: 1.8;
-  margin-top: var(--space-5);
+  margin-top: var(--space-4);
+}
+
+.footer__address a {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color var(--transition-fast);
+}
+
+.footer__address a:hover,
+.footer__address a:focus-visible {
+  color: var(--color-white);
 }
 
 .footer__col h4 {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-gold-light);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .footer__nav {
@@ -1156,8 +1216,8 @@
 }
 
 .footer__nav a {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
@@ -1171,7 +1231,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: var(--space-6);
+  padding-top: var(--space-5);
   flex-wrap: wrap;
   gap: var(--space-4);
 }
@@ -1442,13 +1502,14 @@
     padding: var(--space-6);
   }
 
-  /* CTA band */
-  .cta-band__actions {
+  /* Closing CTA */
+  .closing-cta__actions {
     flex-direction: column;
     align-items: stretch;
+    gap: var(--space-3);
   }
 
-  .cta-band__actions .btn {
+  .closing-cta__actions .btn {
     text-align: center;
     justify-content: center;
   }
