@@ -112,6 +112,28 @@
     elements.forEach(function (el) { observer.observe(el); });
   }
 
+  /* --- Öffnungszeiten: heutigen Tag markieren ----------- */
+  function initOpeningHoursToday() {
+    var list = document.querySelector('[data-opening-hours]');
+    if (!list) return;
+
+    var today = new Date().getDay(); // 0 = Sonntag, 1 = Montag, ...
+    var row = list.querySelector('.hours-list__row[data-day="' + today + '"]');
+    if (!row) return;
+
+    row.classList.add('is-today');
+    row.setAttribute('aria-current', 'date');
+
+    var dayEl = row.querySelector('.hours-list__day');
+    if (dayEl && !row.querySelector('.hours-list__today-label')) {
+      var label = document.createElement('span');
+      label.className = 'hours-list__today-label';
+      label.textContent = 'Heute';
+      label.setAttribute('aria-hidden', 'true');
+      dayEl.appendChild(label);
+    }
+  }
+
   /* --- Tasting Image Loop -------------------------------- */
   function initTastingLoop() {
     var slides = document.querySelectorAll('.tasting-loop__slide');
@@ -140,5 +162,6 @@
     initSmoothScroll();
     initScrollAnimations();
     initTastingLoop();
+    initOpeningHoursToday();
   }
 })();

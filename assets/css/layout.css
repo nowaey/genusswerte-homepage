@@ -750,107 +750,258 @@
 }
 
 /* ---------------------------------------------------------
-   Location & Opening Hours
+   Besuch uns — Standort & Öffnungszeiten
    --------------------------------------------------------- */
-.location-grid {
+.visit-section {
+  padding-block: var(--space-20) var(--space-24);
+}
+
+.visit-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-12);
+  gap: var(--space-16);
   align-items: start;
 }
 
-.location-block {
+/* --- Linke Spalte: Info --- */
+.visit-info {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-5);
+  max-width: 46ch;
 }
 
-.location-block h3 {
+.visit-info__headline {
   font-family: var(--font-serif);
-  font-size: 1.375rem;
-  color: var(--color-green);
-  margin-bottom: var(--space-1);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--color-text);
+  margin: 0;
+  max-width: 16ch;
 }
 
-.location-address {
+.visit-info__body {
+  font-size: 1.0625rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.visit-info__list {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.visit-info__item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: var(--space-5);
+  align-items: baseline;
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.visit-info__item:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.visit-info__label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+.visit-info__value {
   font-size: 1rem;
   color: var(--color-text);
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
-.location-address a {
+.visit-info__link {
   color: var(--color-green);
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-top: var(--space-3);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.location-address a:hover {
-  color: var(--color-green-light);
-}
-
-.location-phone {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--color-green);
-  font-weight: 600;
-  font-size: 1.0625rem;
+  font-weight: 500;
   text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
-.location-phone:hover {
+.visit-info__link:hover,
+.visit-info__link:focus-visible {
   color: var(--color-green-light);
+  border-bottom-color: var(--color-gold);
 }
 
-.opening-hours {
+.visit-info__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.visit-info__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--color-green);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  background: transparent;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.visit-info__cta:hover,
+.visit-info__cta:focus-visible {
+  border-color: var(--color-gold);
+  color: var(--color-green-dark);
+}
+
+.visit-info__cta--primary {
+  border-color: var(--color-gold);
+}
+
+.visit-info__cta--primary:hover,
+.visit-info__cta--primary:focus-visible {
+  background-color: var(--color-gold);
+  color: var(--color-green-dark);
+  box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3);
+}
+
+/* --- Rechte Spalte: Öffnungszeiten-Karte --- */
+.hours-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-8) var(--space-8) var(--space-6);
+  box-shadow: 0 1px 3px rgba(45, 74, 62, 0.04);
+}
+
+.hours-card__head {
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hours-card__eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-2);
+}
+
+.hours-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.hours-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0;
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  border: 1px solid var(--color-border);
 }
 
-.opening-hours__row {
+.hours-list__row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.7rem var(--space-5);
-  font-size: 0.9375rem;
-  border-bottom: 1px solid var(--color-border);
   gap: var(--space-4);
+  padding: 0.65rem var(--space-2);
+  font-size: 0.9375rem;
+  border-radius: var(--radius-sm);
+  position: relative;
+  transition: background-color var(--transition-fast);
 }
 
-.opening-hours__row:last-child {
-  border-bottom: none;
-}
-
-.opening-hours__row:nth-child(odd) {
-  background-color: var(--color-white);
-}
-
-.opening-hours__row:nth-child(even) {
-  background-color: var(--color-bg-alt);
-}
-
-.opening-hours__day {
+.hours-list__day {
   font-weight: 500;
   color: var(--color-text);
-  min-width: 100px;
+  font-family: var(--font-sans);
 }
 
-.opening-hours__time {
+.hours-list__time {
   color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
 }
 
-.opening-hours__time--closed {
+.hours-list__time--closed {
   color: var(--color-text-light);
+  font-style: italic;
+}
+
+/* Aktueller Tag — dezent hervorgehoben */
+.hours-list__row.is-today {
+  background-color: var(--color-bg-alt);
+  padding-inline: var(--space-4);
+}
+
+.hours-list__row.is-today .hours-list__day {
+  color: var(--color-green-dark);
+  font-weight: 600;
+}
+
+.hours-list__row.is-today .hours-list__time {
+  color: var(--color-green-dark);
+  font-weight: 500;
+}
+
+.hours-list__row.is-today .hours-list__time--closed {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.hours-list__row.is-today::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background-color: var(--color-gold);
+  border-radius: 2px;
+}
+
+.hours-list__today-label {
+  display: inline-block;
+  margin-left: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  vertical-align: middle;
+}
+
+.hours-card__note {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
   font-style: italic;
 }
 
@@ -1072,9 +1223,23 @@
     font-size: clamp(1.75rem, 7vw, 2.5rem);
   }
 
-  .location-grid {
+  .visit-grid {
     grid-template-columns: 1fr;
     gap: var(--space-10);
+  }
+
+  .visit-info__headline {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
+  .visit-info__item {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+    padding-block: var(--space-3);
+  }
+
+  .hours-card {
+    padding: var(--space-6);
   }
 
   .redemption-layout {
