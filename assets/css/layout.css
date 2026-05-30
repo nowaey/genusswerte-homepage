@@ -1099,6 +1099,107 @@
   max-width: 48ch;
 }
 
+/* Kompakte Variante (Kontaktseite) */
+.page-hero--compact {
+  padding-block: var(--space-12) var(--space-10);
+  gap: var(--space-3);
+}
+
+.page-hero--compact .page-hero__logo {
+  width: 100px;
+  opacity: 0.8;
+  margin-bottom: var(--space-1);
+}
+
+.page-hero--compact .page-hero__title {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+}
+
+.page-hero--compact .page-hero__subtitle {
+  font-size: 1rem;
+  max-width: 52ch;
+  line-height: 1.7;
+}
+
+/* ---------------------------------------------------------
+   Contact Options — Kontaktkanäle (editorial)
+   --------------------------------------------------------- */
+.contact-options__header {
+  max-width: 56ch;
+  margin: 0 auto var(--space-12);
+  text-align: center;
+}
+
+.contact-options__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin: var(--space-3) 0 var(--space-4);
+}
+
+.contact-options__body {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 50ch;
+}
+
+.contact-channels {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border);
+}
+
+.contact-channel {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  align-items: center;
+  gap: var(--space-6);
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.contact-channel__label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.contact-channel__desc {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.contact-channel__value {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-green);
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.contact-channel__value:hover,
+.contact-channel__value:focus-visible {
+  color: var(--color-green-light);
+  border-bottom-color: var(--color-gold);
+}
+
 /* ---------------------------------------------------------
    Redemption Form Layout
    --------------------------------------------------------- */
@@ -1300,6 +1401,17 @@
 
   .hours-card {
     padding: var(--space-6);
+  }
+
+  .contact-channel {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    padding-block: var(--space-4);
+  }
+
+  .contact-channel__value {
+    white-space: normal;
+    justify-self: start;
   }
 
   .redemption-layout {
