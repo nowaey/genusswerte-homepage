@@ -207,20 +207,21 @@
     var state = { tasting: null, persons: 1 };
 
     var el = {
-      category:   modal.querySelector('[data-modal-category]'),
-      title:      modal.querySelector('[data-modal-title]'),
+      category:    modal.querySelector('[data-modal-category]'),
+      title:       modal.querySelector('[data-modal-title]'),
       description: modal.querySelector('[data-modal-description]'),
-      duration:   modal.querySelector('[data-modal-duration]'),
-      location:   modal.querySelector('[data-modal-location]'),
-      count:      modal.querySelector('[data-modal-count]'),
-      dec:        modal.querySelector('[data-modal-decrement]'),
-      inc:        modal.querySelector('[data-modal-increment]'),
-      sumTitle:   modal.querySelector('[data-summary-title]'),
-      sumPersons: modal.querySelector('[data-summary-persons]'),
-      sumTotal:   modal.querySelector('[data-summary-total]'),
-      buy:        modal.querySelector('[data-modal-buy]'),
-      notice:     modal.querySelector('[data-modal-notice]'),
-      close:      modal.querySelector('[data-modal-close]')
+      duration:    modal.querySelector('[data-modal-duration]'),
+      location:    modal.querySelector('[data-modal-location]'),
+      price:       modal.querySelector('[data-modal-price]'),
+      count:       modal.querySelector('[data-modal-count]'),
+      dec:         modal.querySelector('[data-modal-decrement]'),
+      inc:         modal.querySelector('[data-modal-increment]'),
+      sumTitle:    modal.querySelector('[data-summary-title]'),
+      sumPersons:  modal.querySelector('[data-summary-persons]'),
+      sumTotal:    modal.querySelector('[data-summary-total]'),
+      buy:         modal.querySelector('[data-modal-buy]'),
+      notice:      modal.querySelector('[data-modal-notice]'),
+      close:       modal.querySelector('[data-modal-close]')
     };
 
     function updateStepperState() {
@@ -247,8 +248,9 @@
       el.category.textContent = tasting.category;
       el.title.textContent = tasting.title;
       el.description.textContent = tasting.description;
-      el.duration.textContent = 'Dauer: ' + tasting.duration;
+      el.duration.textContent = tasting.duration;
       el.location.textContent = tasting.location;
+      el.price.textContent = 'ab ' + formatPrice(tasting.pricePerPerson) + ' p. P.';
 
       updateStepperState();
       updateSummary();
