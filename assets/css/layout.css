@@ -502,8 +502,11 @@
   padding-block: var(--space-20) var(--space-24);
 }
 
-.tasting-teaser__inner {
-  max-width: 860px;
+.tasting-teaser__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
 }
 
 .tasting-teaser__headline {
@@ -522,64 +525,88 @@
   color: var(--color-text-muted);
   line-height: 1.8;
   margin-top: var(--space-6);
-  max-width: 55ch;
-}
-
-.tasting-teaser__pillars {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: var(--space-12);
-  border-top: 1px solid var(--color-border);
-}
-
-.tasting-teaser__pillar {
-  padding-top: var(--space-6);
-  padding-right: var(--space-8);
-  position: relative;
-}
-
-.tasting-teaser__pillar::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 2.25rem;
-  height: 2px;
-  background-color: var(--color-gold);
-}
-
-.tasting-teaser__pillar + .tasting-teaser__pillar {
-  padding-left: var(--space-8);
-  padding-right: 0;
-  border-left: 1px solid var(--color-border);
-}
-
-.tasting-teaser__pillar-text {
-  font-family: var(--font-serif);
-  font-size: 1.125rem;
-  font-weight: 500;
-  color: var(--color-text);
-  line-height: 1.3;
+  max-width: 44ch;
 }
 
 .tasting-teaser__cta {
-  display: inline-block;
-  margin-top: var(--space-10);
+  display: inline-flex;
+  align-items: center;
+  margin-top: var(--space-8);
+  padding: 0.7rem 1.75rem;
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   font-weight: 500;
+  letter-spacing: 0.03em;
   color: var(--color-green);
-  letter-spacing: 0.02em;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-color: var(--color-gold);
-  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+  border: 1.5px solid var(--color-gold);
+  border-radius: var(--radius-btn);
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .tasting-teaser__cta:hover,
 .tasting-teaser__cta:focus-visible {
-  color: var(--color-green-light);
-  text-decoration-color: var(--color-green-light);
+  background-color: var(--color-gold);
+  color: var(--color-green-dark);
+  box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3);
+}
+
+/* Visuelles Panel — dunkelgrüne Erlebnis-Fläche (Platzhalter für späteres Foto) */
+.tasting-teaser__visual {
+  background-color: var(--color-green-dark);
+  border-radius: var(--radius-card);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-10);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtile Wärme: Gold-Licht von oben rechts */
+.tasting-teaser__visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 85% 10%, rgba(201, 169, 110, 0.13) 0%, transparent 58%);
+  pointer-events: none;
+}
+
+.tasting-teaser__visual-label {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.7;
+}
+
+.tasting-teaser__quote {
+  position: relative;
+  z-index: 1;
+}
+
+.tasting-teaser__quote::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background-color: var(--color-gold);
+  opacity: 0.45;
+  margin-bottom: var(--space-5);
+}
+
+.tasting-teaser__quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.125rem, 1.9vw, 1.375rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.55;
+  max-width: none;
 }
 
 /* ---------------------------------------------------------
@@ -1133,22 +1160,15 @@
     gap: var(--space-10);
   }
 
-  /* Tasting Teaser: Pillars untereinander stapeln */
-  .tasting-teaser__pillars {
+  /* Tasting Teaser: Spalten auf Mobile stapeln */
+  .tasting-teaser__split {
     grid-template-columns: 1fr;
+    gap: var(--space-10);
   }
 
-  .tasting-teaser__pillar + .tasting-teaser__pillar {
-    padding-left: 0;
-    border-left: none;
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-6);
-    margin-top: 0;
-  }
-
-  .tasting-teaser__pillar {
-    padding-right: 0;
-    padding-bottom: var(--space-5);
+  .tasting-teaser__visual {
+    min-height: 300px;
+    padding: var(--space-8);
   }
 
   .tasting-teaser__headline {
