@@ -611,8 +611,8 @@
 }
 
 .tasting-loop__slide:nth-child(3) img {
-  /* Passimoncello: zentriert, leicht auf die Mitte fokussiert */
-  object-position: center 45%;
+  /* Passimoncello: Fokus auf Glas + Flasche samt Label */
+  object-position: center 70%;
 }
 
 /* Label als eingebettetes Overlay am unteren Bildrand */
