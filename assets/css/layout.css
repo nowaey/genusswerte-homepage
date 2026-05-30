@@ -469,6 +469,20 @@
 }
 
 /* ---------------------------------------------------------
+   Quick Nav Grid — Asymmetrisches Editorial-Layout
+   --------------------------------------------------------- */
+.nav-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: var(--space-5) var(--space-8);
+}
+
+/* Schnellnavigation: weniger vertikales Padding als reguläre Sections */
+#schnellnavigation {
+  padding-block: var(--space-16);
+}
+
+/* ---------------------------------------------------------
    CTA Band (dark sections)
    --------------------------------------------------------- */
 .cta-band {
@@ -878,6 +892,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .nav-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4) var(--space-6);
+  }
+
   .sortiment-split {
     grid-template-columns: 1fr;
     gap: var(--space-10);
@@ -1008,6 +1027,11 @@
   .card-grid,
   .card-grid--4 {
     grid-template-columns: 1fr;
+  }
+
+  .nav-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .card-grid--2up {
