@@ -499,7 +499,7 @@
    Tasting Teaser — Emotionaler Einstieg direkt nach dem Hero
    --------------------------------------------------------- */
 .tasting-teaser {
-  padding-block: var(--space-20) var(--space-24);
+  padding-block: var(--space-16) var(--space-20);
 }
 
 .tasting-teaser__split {
@@ -507,6 +507,7 @@
   grid-template-columns: 1fr 1.1fr;
   gap: var(--space-16);
   align-items: stretch;
+  min-height: 500px;
 }
 
 .tasting-teaser__headline {
@@ -560,7 +561,7 @@
 .tasting-loop {
   position: relative;
   flex: 1;
-  min-height: 440px;
+  min-height: 480px;
   border-radius: var(--radius-card);
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(45, 74, 62, 0.16), 0 2px 8px rgba(0, 0, 0, 0.07);
@@ -595,6 +596,16 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  object-position: center 40%;
+}
+
+/* Bildspezifisches Cropping — je nach Motiv anpassen */
+.tasting-loop__slide:nth-child(1) img {
+  object-position: center 45%;
+}
+
+.tasting-loop__slide:nth-child(2) img {
+  object-position: center 30%;
 }
 
 /* Label als eingebettetes Overlay am unteren Bildrand */
@@ -1173,7 +1184,9 @@
   }
 
   .tasting-loop {
-    min-height: 280px;
+    height: 350px;
+    min-height: unset;
+    flex: none;
   }
 
   .card-grid--2up {
