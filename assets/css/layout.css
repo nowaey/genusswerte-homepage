@@ -1635,8 +1635,13 @@
    Tasting Modal — native <dialog>
    --------------------------------------------------------- */
 .tasting-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
   width: min(560px, calc(100vw - 2rem));
-  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
   padding: 0;
   border: none;
   border-radius: var(--radius-card);
