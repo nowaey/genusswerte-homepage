@@ -211,7 +211,6 @@
       title:       modal.querySelector('[data-modal-title]'),
       description: modal.querySelector('[data-modal-description]'),
       duration:    modal.querySelector('[data-modal-duration]'),
-      location:    modal.querySelector('[data-modal-location]'),
       price:       modal.querySelector('[data-modal-price]'),
       count:       modal.querySelector('[data-modal-count]'),
       dec:         modal.querySelector('[data-modal-decrement]'),
@@ -249,7 +248,6 @@
       el.title.textContent = tasting.title;
       el.description.textContent = tasting.description;
       el.duration.textContent = tasting.duration;
-      el.location.textContent = tasting.location;
       el.price.textContent = 'ab ' + formatPrice(tasting.pricePerPerson) + ' p. P.';
 
       updateStepperState();
