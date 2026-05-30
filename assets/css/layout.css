@@ -665,68 +665,88 @@
 }
 
 /* ---------------------------------------------------------
-   Sortiment / Store Split Layout
+   Über uns / About Split — Gastgeber-Moment
    --------------------------------------------------------- */
-.sortiment-split {
+.about-section {
+  padding-block: var(--space-20) var(--space-24);
+}
+
+.about-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-16);
   align-items: center;
 }
 
-.sortiment-split__image {
+.about-split__image {
+  position: relative;
+  margin: 0;
   border-radius: var(--radius-card);
   overflow: hidden;
   aspect-ratio: 4 / 5;
-  background: linear-gradient(135deg, var(--color-green) 0%, var(--color-green-dark) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
+  box-shadow: 0 12px 40px rgba(45, 74, 62, 0.18), 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-.sortiment-split__image img {
+.about-split__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 30%;
+  display: block;
 }
 
-.sortiment-split__content {
+.about-split__content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-5);
+  max-width: 46ch;
 }
 
-.sortiment-split__content .section__eyebrow {
+.about-split__content .section__eyebrow {
   margin-bottom: 0;
 }
 
-.sortiment-split__content h2 {
-  margin-bottom: 0;
+.about-split__headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--color-text);
+  margin: 0;
+  max-width: 18ch;
 }
 
-.sortiment-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.sortiment-list__item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  font-size: 0.9375rem;
+.about-split__body {
+  font-size: 1.0625rem;
   color: var(--color-text-muted);
+  line-height: 1.8;
+  margin: 0;
 }
 
-.sortiment-list__item::before {
-  content: '';
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+.about-split__cta-row {
+  margin-top: var(--space-3);
+}
+
+.about-split__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--color-green);
+  border: 1.5px solid var(--color-gold);
+  border-radius: var(--radius-btn);
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.about-split__cta:hover,
+.about-split__cta:focus-visible {
   background-color: var(--color-gold);
-  flex-shrink: 0;
+  color: var(--color-green-dark);
+  box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3);
 }
 
 /* ---------------------------------------------------------
@@ -1038,14 +1058,18 @@
     gap: var(--space-10);
   }
 
-  .sortiment-split {
+  .about-split {
     grid-template-columns: 1fr;
     gap: var(--space-10);
   }
 
-  .sortiment-split__image {
-    aspect-ratio: 16 / 9;
-    max-height: 400px;
+  .about-split__image {
+    aspect-ratio: 4 / 3;
+    max-height: 480px;
+  }
+
+  .about-split__headline {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
   }
 
   .location-grid {
