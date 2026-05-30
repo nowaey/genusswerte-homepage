@@ -248,10 +248,10 @@
 
 .hero__headline {
   font-family: var(--font-serif);
-  font-size: clamp(2.75rem, 6.5vw, 4.75rem);
+  font-size: clamp(2.5rem, 5.6vw, 4rem);
   font-weight: 700;
   color: var(--color-white);
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.98s both;
 }
@@ -260,6 +260,15 @@
   font-style: italic;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.88);
+}
+
+.hero__headline-sub {
+  display: block;
+  font-size: 0.62em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.78);
+  letter-spacing: 0em;
+  margin-top: 0.18em;
 }
 
 .hero__desc {
@@ -297,20 +306,20 @@
 }
 
 .hero__cta-link {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.68);
   font-weight: 500;
-  letter-spacing: 0.02em;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-color: rgba(255, 255, 255, 0.28);
-  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  padding-bottom: 2px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
   white-space: nowrap;
 }
 
 .hero__cta-link:hover {
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration-color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.58);
 }
 
 .hero__trust {
