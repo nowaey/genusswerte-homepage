@@ -1,13 +1,21 @@
 -- =========================================================
 -- Genusswerte Bonn — Tastings & Slots Setup
 -- Ausführen im Supabase Dashboard → SQL Editor → New Query
+-- Kann beliebig oft ausgeführt werden (idempotent)
 -- =========================================================
+
+-- ---------------------------------------------------------
+-- 0. CLEANUP — alte Objekte entfernen (falls vorhanden)
+-- ---------------------------------------------------------
+DROP VIEW  IF EXISTS available_tasting_slots;
+DROP TABLE IF EXISTS tasting_slots CASCADE;
+DROP TABLE IF EXISTS tastings      CASCADE;
 
 
 -- ---------------------------------------------------------
 -- 1. TASTINGS — Tasting-Formate
 -- ---------------------------------------------------------
-CREATE TABLE IF NOT EXISTS tastings (
+CREATE TABLE tastings (
   id               UUID         DEFAULT gen_random_uuid() PRIMARY KEY,
   slug             TEXT         UNIQUE NOT NULL,   -- entspricht id in window.GW_TASTINGS
   title            TEXT         NOT NULL,
@@ -27,7 +35,7 @@ CREATE TABLE IF NOT EXISTS tastings (
 -- ---------------------------------------------------------
 -- 2. TASTING SLOTS — Einzelne buchbare Termine
 -- ---------------------------------------------------------
-CREATE TABLE IF NOT EXISTS tasting_slots (
+CREATE TABLE tasting_slots (
   id            UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
   tasting_id    UUID        REFERENCES tastings(id) ON DELETE CASCADE NOT NULL,
   slot_date     DATE        NOT NULL,
