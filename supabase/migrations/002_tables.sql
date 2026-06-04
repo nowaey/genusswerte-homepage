@@ -10,7 +10,7 @@
 -- Nur hier eingetragene User dürfen das Admin Panel nutzen.
 -- Kein automatisches "authenticated = Admin" — explizite Whitelist.
 -- ----------------------------------------------------------
-CREATE TABLE admin_users (
+CREATE TABLE IF NOT EXISTS admin_users (
   id          uuid        PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id     uuid        NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
   role        admin_role  NOT NULL DEFAULT 'admin',
@@ -24,7 +24,7 @@ CREATE TABLE admin_users (
 -- email absichtlich NICHT unique: Ein Kunde kann mehrfach kaufen
 -- oder für andere Personen kaufen.
 -- ----------------------------------------------------------
-CREATE TABLE customers (
+CREATE TABLE IF NOT EXISTS customers (
   id          uuid        PRIMARY KEY DEFAULT gen_random_uuid(),
   name        text        NOT NULL,
   email       text        NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE customers (
 --     - Für Tasting-Voucher kann es null bleiben oder auf completed
 --       gesetzt werden, sobald der Voucher erzeugt wurde.
 -- ----------------------------------------------------------
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS orders (
   id                        uuid               PRIMARY KEY DEFAULT gen_random_uuid(),
   customer_id               uuid               NOT NULL REFERENCES customers(id),
   order_type                order_type         NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE orders (
 -- Positionen innerhalb einer Bestellung.
 -- tasting_type nur bei order_type = 'tasting_voucher' gesetzt.
 -- ----------------------------------------------------------
-CREATE TABLE order_items (
+CREATE TABLE IF NOT EXISTS order_items (
   id            uuid         PRIMARY KEY DEFAULT gen_random_uuid(),
   order_id      uuid         NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
   product_name  text         NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE order_items (
 --   persons: Anzahl Personen des Gutscheins.
 --   Beim Reservieren wird capacity_reserved += persons (nicht += 1).
 -- ----------------------------------------------------------
-CREATE TABLE vouchers (
+CREATE TABLE IF NOT EXISTS vouchers (
   id            uuid           PRIMARY KEY DEFAULT gen_random_uuid(),
   voucher_code  text           UNIQUE NOT NULL,
   order_id      uuid           NOT NULL REFERENCES orders(id),
@@ -114,7 +114,7 @@ CREATE TABLE vouchers (
 -- capacity_reserved wird durch reserve_voucher_slot() erhöht,
 -- niemals manuell oder direkt durch die Website.
 -- ----------------------------------------------------------
-CREATE TABLE tasting_slots (
+CREATE TABLE IF NOT EXISTS tasting_slots (
   id                 uuid        PRIMARY KEY DEFAULT gen_random_uuid(),
   tasting_type       tasting_type NOT NULL,
   slot_date          date        NOT NULL,
@@ -143,7 +143,7 @@ CREATE TABLE tasting_slots (
 --   Diese können von den customers-Daten der ursprünglichen Bestellung abweichen
 --   (z. B. wenn jemand einen Gutschein verschenkt).
 -- ----------------------------------------------------------
-CREATE TABLE voucher_reservations (
+CREATE TABLE IF NOT EXISTS voucher_reservations (
   id                uuid        PRIMARY KEY DEFAULT gen_random_uuid(),
   voucher_id        uuid        UNIQUE NOT NULL REFERENCES vouchers(id),
   slot_id           uuid        NOT NULL REFERENCES tasting_slots(id),

@@ -25,19 +25,19 @@ END;
 $$;
 
 -- orders
-CREATE TRIGGER trg_orders_updated_at
+CREATE OR REPLACE TRIGGER trg_orders_updated_at
   BEFORE UPDATE ON orders
   FOR EACH ROW
   EXECUTE FUNCTION set_updated_at();
 
 -- vouchers
-CREATE TRIGGER trg_vouchers_updated_at
+CREATE OR REPLACE TRIGGER trg_vouchers_updated_at
   BEFORE UPDATE ON vouchers
   FOR EACH ROW
   EXECUTE FUNCTION set_updated_at();
 
 -- tasting_slots
-CREATE TRIGGER trg_tasting_slots_updated_at
+CREATE OR REPLACE TRIGGER trg_tasting_slots_updated_at
   BEFORE UPDATE ON tasting_slots
   FOR EACH ROW
   EXECUTE FUNCTION set_updated_at();

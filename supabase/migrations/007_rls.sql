@@ -25,6 +25,7 @@
 -- ============================================================
 ALTER TABLE admin_users ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "admin_users: admins lesen" ON admin_users;
 CREATE POLICY "admin_users: admins lesen"
   ON admin_users
   FOR SELECT
@@ -40,18 +41,21 @@ CREATE POLICY "admin_users: admins lesen"
 -- ============================================================
 ALTER TABLE customers ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "customers: admins lesen" ON customers;
 CREATE POLICY "customers: admins lesen"
   ON customers
   FOR SELECT
   TO authenticated
   USING (is_admin());
 
+DROP POLICY IF EXISTS "customers: admins anlegen" ON customers;
 CREATE POLICY "customers: admins anlegen"
   ON customers
   FOR INSERT
   TO authenticated
   WITH CHECK (is_admin());
 
+DROP POLICY IF EXISTS "customers: admins aktualisieren" ON customers;
 CREATE POLICY "customers: admins aktualisieren"
   ON customers
   FOR UPDATE
@@ -64,12 +68,14 @@ CREATE POLICY "customers: admins aktualisieren"
 -- ============================================================
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "orders: admins lesen" ON orders;
 CREATE POLICY "orders: admins lesen"
   ON orders
   FOR SELECT
   TO authenticated
   USING (is_admin());
 
+DROP POLICY IF EXISTS "orders: admins aktualisieren" ON orders;
 CREATE POLICY "orders: admins aktualisieren"
   ON orders
   FOR UPDATE
@@ -85,6 +91,7 @@ CREATE POLICY "orders: admins aktualisieren"
 -- ============================================================
 ALTER TABLE order_items ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "order_items: admins lesen" ON order_items;
 CREATE POLICY "order_items: admins lesen"
   ON order_items
   FOR SELECT
@@ -99,12 +106,14 @@ CREATE POLICY "order_items: admins lesen"
 -- ============================================================
 ALTER TABLE vouchers ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "vouchers: admins lesen" ON vouchers;
 CREATE POLICY "vouchers: admins lesen"
   ON vouchers
   FOR SELECT
   TO authenticated
   USING (is_admin());
 
+DROP POLICY IF EXISTS "vouchers: admins aktualisieren" ON vouchers;
 CREATE POLICY "vouchers: admins aktualisieren"
   ON vouchers
   FOR UPDATE
@@ -122,24 +131,28 @@ CREATE POLICY "vouchers: admins aktualisieren"
 -- ============================================================
 ALTER TABLE tasting_slots ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "tasting_slots: admins lesen" ON tasting_slots;
 CREATE POLICY "tasting_slots: admins lesen"
   ON tasting_slots
   FOR SELECT
   TO authenticated
   USING (is_admin());
 
+DROP POLICY IF EXISTS "tasting_slots: admins anlegen" ON tasting_slots;
 CREATE POLICY "tasting_slots: admins anlegen"
   ON tasting_slots
   FOR INSERT
   TO authenticated
   WITH CHECK (is_admin());
 
+DROP POLICY IF EXISTS "tasting_slots: admins aktualisieren" ON tasting_slots;
 CREATE POLICY "tasting_slots: admins aktualisieren"
   ON tasting_slots
   FOR UPDATE
   TO authenticated
   USING (is_admin());
 
+DROP POLICY IF EXISTS "tasting_slots: admins löschen" ON tasting_slots;
 CREATE POLICY "tasting_slots: admins löschen"
   ON tasting_slots
   FOR DELETE
@@ -152,12 +165,14 @@ CREATE POLICY "tasting_slots: admins löschen"
 -- ============================================================
 ALTER TABLE voucher_reservations ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "voucher_reservations: admins lesen" ON voucher_reservations;
 CREATE POLICY "voucher_reservations: admins lesen"
   ON voucher_reservations
   FOR SELECT
   TO authenticated
   USING (is_admin());
 
+DROP POLICY IF EXISTS "voucher_reservations: admins aktualisieren" ON voucher_reservations;
 CREATE POLICY "voucher_reservations: admins aktualisieren"
   ON voucher_reservations
   FOR UPDATE
