@@ -310,12 +310,12 @@
       if (e.target === modal) closeModal();
     });
 
-    // Kaufen-Button: zeigt Hinweis-Block (kein echter Checkout)
+    // Kaufen-Button: startet Stripe Checkout via Edge Function
     el.buy.addEventListener('click', function (e) {
       e.preventDefault();
-      el.notice.hidden = false;
-      el.buy.hidden = true;
-      el.notice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      if (window.GW_checkout) {
+        window.GW_checkout.createSession(state.tasting, state.persons);
+      }
     });
   }
 

@@ -203,17 +203,14 @@
           </div>
         </div>
 
-        <!-- Bestätigung nach Button-Klick -->
-        <div class="tasting-modal__notice" data-modal-notice hidden>
-          <p>Danke f&uuml;r deine Auswahl! Schreib uns &uuml;ber die Kontaktseite &mdash; wir melden uns schnell zur&uuml;ck.</p>
-          <a href="kontakt.html" class="tasting-modal__notice-link">Zur Kontaktseite &rarr;</a>
-        </div>
+        <!-- Hinweis-Block (wird nicht mehr aktiv genutzt, bleibt versteckt) -->
+        <div class="tasting-modal__notice" data-modal-notice hidden></div>
 
       </div>
 
       <footer class="tasting-modal__footer">
-        <p class="tasting-modal__payment-note">Online-Zahlung folgt in K&uuml;rze &mdash; du kannst deine Auswahl vorerst anfragen.</p>
-        <button type="button" class="tasting-modal__buy" data-modal-buy>Auswahl anfragen</button>
+        <p class="form-error" data-modal-error hidden style="text-align:center; margin-bottom: 0.75rem;"></p>
+        <button type="button" class="tasting-modal__buy" data-modal-buy>Jetzt Gutschein kaufen</button>
       </footer>
 
     </form>
@@ -264,7 +261,9 @@
     </div>
   </footer>
 
+  <script src="assets/js/config.js"></script>
   <script src="assets/js/tastings-data.js"></script>
+  <script src="assets/js/checkout.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

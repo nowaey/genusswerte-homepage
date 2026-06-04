@@ -11,6 +11,7 @@
 window.GW_TASTINGS = [
   {
     id: 'wein',
+    tastingType: 'wein_tasting',
     title: 'Wein Tasting',
     category: 'Tasting-Format',
     description: 'Eine Reise durch fünf einzigartige Weine, fein abgestimmt auf ausgesuchte Käsespezialitäten. Auch als Naturwein, vegan oder alkoholfrei erhältlich.',
@@ -21,6 +22,7 @@ window.GW_TASTINGS = [
   },
   {
     id: 'afterwork',
+    tastingType: 'afterwork_wein_tasting',
     title: 'Afterwork Wein Tasting',
     category: 'Tasting-Format',
     description: 'Vier ausgewählte Weine und feine Häppchen aus der Feinkost machen deinen Feierabend zum Genuss. Entspannt, stilvoll, unvergesslich.',
@@ -31,6 +33,7 @@ window.GW_TASTINGS = [
   },
   {
     id: 'gin',
+    tastingType: 'gin_tasting',
     title: 'Gin Tasting',
     category: 'Tasting-Format',
     description: 'Vier besondere Gins, begleitet von passenden Tonic Waters. Kein Fachgesimpel — einfach gutes Trinken, spannende Aromen und ein toller Abend.',
@@ -41,6 +44,7 @@ window.GW_TASTINGS = [
   },
   {
     id: 'champagner',
+    tastingType: 'champagner_popcorn_tasting',
     title: 'Champagner & Popcorn',
     category: 'Tasting-Format',
     description: 'Fünf Champagner und Schaumweine treffen auf kreative Popcorn-Sorten. Eine Kombination, die überrascht und garantiert ein Lächeln zaubert.',
@@ -51,6 +55,7 @@ window.GW_TASTINGS = [
   },
   {
     id: 'trueffel',
+    tastingType: 'trueffel_champagner_tasting',
     title: 'Trüffel & Champagner',
     category: 'Tasting-Format · Premium',
     description: 'Ein Aperitif zur Begrüßung, drei liebevoll komponierte Gänge — veredelt mit frischem Trüffel und abgestimmt auf edle Schaumweine. Kulinarische Eleganz pur.',
@@ -61,6 +66,7 @@ window.GW_TASTINGS = [
   },
   {
     id: 'whisky',
+    tastingType: 'whisky_tasting',
     title: 'Whisky Tasting',
     category: 'Tasting-Format',
     description: 'Fünf ausgewählte Whiskys, serviert mit gerösteten Salzmandeln und edler Schokolade — ein stilvoller Abend für alle, die guten Geschmack feiern.',
@@ -71,6 +77,7 @@ window.GW_TASTINGS = [
   },
   {
     id: 'craftbeer',
+    tastingType: 'craft_beer_tasting',
     title: 'Craft Beer Tasting',
     category: 'Tasting-Format',
     description: 'Einzigartige, handgebraute Biere aus der Region und aller Welt — von hopfig-fruchtig bis malzig-dunkel. Finde dein Lieblingsbier in guter Gesellschaft.',
@@ -81,6 +88,7 @@ window.GW_TASTINGS = [
   },
   {
     id: 'wagyu',
+    tastingType: 'wagyu_wein_champagner_tasting',
     title: 'Wagyu, Wein & Champagner',
     category: 'Tasting-Format · Highlight',
     description: 'Das beste Fleisch der Welt trifft auf drei erstklassige Weine und einen erfrischenden Champagner — eine Geschmacksexplosion, die nachhaltig beeindruckt.',
@@ -91,6 +99,7 @@ window.GW_TASTINGS = [
   },
   {
     id: 'apero',
+    tastingType: 'apero_antipasti_tasting',
     title: 'Apéro & Antipasti',
     category: 'Tasting-Format',
     description: 'Leckere Antipasti und perfekt abgestimmte Aperitif-Drinks — für jeden Geschmack etwas dabei. Auch in einer alkoholfreien Variante erhältlich.',

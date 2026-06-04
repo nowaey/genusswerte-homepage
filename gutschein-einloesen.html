@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gutschein einlösen — Genusswerte Bonn</title>
-  <meta name="description" content="Löse Deinen Tasting-Gutschein ein. Wunschtermin anfragen — wir melden uns persönlich bei Dir. Genusswerte Bonn, Bonn-Poppelsdorf.">
+  <meta name="description" content="Löse deinen Tasting-Gutschein ein. Code eingeben, verfügbaren Termin wählen, Bestätigung per E-Mail. Genusswerte Bonn, Bonn-Poppelsdorf.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Gutschein einlösen — Genusswerte Bonn">
-  <meta property="og:description" content="Wunschtermin anfragen — wir melden uns persönlich mit einer Bestätigung.">
+  <meta property="og:description" content="Code eingeben, verfügbaren Termin wählen, Bestätigung per E-Mail.">
   <meta property="og:type" content="website">
 
   <!-- Favicon -->
@@ -65,7 +65,7 @@
            alt="Genusswerte Bonn" class="page-hero__logo" width="130" height="39">
       <span class="page-hero__eyebrow">Tasting-Gutschein</span>
       <h1 class="page-hero__title">Deinen Gutschein einlösen</h1>
-      <p class="page-hero__subtitle">Gutscheincode eingeben &mdash; wir best&auml;tigen deinen Termin pers&ouml;nlich.</p>
+      <p class="page-hero__subtitle">Code eingeben &mdash; Termin w&auml;hlen &mdash; Best&auml;tigung per E-Mail.</p>
     </div>
 
     <!-- =====================================================
@@ -78,16 +78,16 @@
           <li class="step">
             <div class="step__number" aria-hidden="true">1</div>
             <div class="step__text">
-              <h2 class="step__title">Gutscheincode &amp; Tasting eingeben</h2>
-              <p class="step__body">Trage deinen Gutscheincode, dein gew&uuml;nschtes Tasting und deine Kontaktdaten ein.</p>
+              <h2 class="step__title">Gutscheincode pr&uuml;fen</h2>
+              <p class="step__body">Gib deinen Gutscheincode ein &mdash; wir pr&uuml;fen ihn sofort und zeigen dir, welches Tasting du gebucht hast.</p>
             </div>
           </li>
 
           <li class="step">
             <div class="step__number" aria-hidden="true">2</div>
             <div class="step__text">
-              <h2 class="step__title">Termin angeben</h2>
-              <p class="step__body">Nenne uns deinen bevorzugten Termin. Bald werden hier verf&uuml;gbare feste Termine direkt angezeigt.</p>
+              <h2 class="step__title">Verf&uuml;gbaren Termin w&auml;hlen</h2>
+              <p class="step__body">W&auml;hle direkt einen der verf&uuml;gbaren Tasting-Termine &mdash; ganz ohne Wartezeit.</p>
             </div>
           </li>
 
@@ -95,15 +95,11 @@
             <div class="step__number" aria-hidden="true">3</div>
             <div class="step__text">
               <h2 class="step__title">Best&auml;tigung per E-Mail</h2>
-              <p class="step__body">Wir best&auml;tigen deinen Termin pers&ouml;nlich. Sp&auml;ter erh&auml;ltst du automatisch ein Ticket zum Ausdrucken.</p>
+              <p class="step__body">Trage deine Kontaktdaten ein und buche deinen Termin verbindlich. Du erh&auml;ltst sofort eine Best&auml;tigung per E-Mail.</p>
             </div>
           </li>
 
         </ol>
-
-        <div class="text-center" style="margin-top: 2.5rem;">
-          <span class="availability-note">Pers&ouml;nliche Terminbest&auml;tigung</span>
-        </div>
 
       </div>
     </section>
@@ -116,139 +112,109 @@
 
         <div class="redemption-layout">
 
-          <!-- Form -->
+          <!-- 3-Schritt-Einlöse-Flow -->
           <div>
             <div class="redemption-form-wrapper">
 
-              <div>
-                <h2 style="font-family: var(--font-serif); font-size: 1.75rem; color: var(--color-green); margin-bottom: 0.5rem;">Termin zur Einl&ouml;sung anfragen</h2>
-                <p style="color: var(--color-text-muted); font-size: 0.9375rem;">Felder mit <span style="color: #C0392B;">*</span> sind Pflichtfelder.</p>
-              </div>
+              <!-- ─── Schritt 1: Code prüfen ─────────────────── -->
+              <div id="step-1" class="redemption-step">
+                <h2 style="font-family: var(--font-serif); font-size: 1.75rem; color: var(--color-green); margin-bottom: 0.5rem;">Deinen Gutschein einl&ouml;sen</h2>
+                <p style="color: var(--color-text-muted); font-size: 0.9375rem; margin-bottom: 1.5rem;">Gib deinen Gutscheincode ein &mdash; wir pr&uuml;fen ihn sofort.</p>
 
-              <!-- Success message (hidden until form is submitted) -->
-              <div class="form-success" id="form-success" role="alert" aria-live="polite">
-                <span class="form-success__icon" aria-hidden="true">✓</span>
-                <p class="form-success__title">Anfrage eingegangen!</p>
-                <p class="form-success__body">Danke! Deine Anfrage ist eingegangen. Wir prüfen die Verfügbarkeit und melden uns persönlich mit einer Terminbestätigung.</p>
-              </div>
-
-              <form id="gutschein-form"
-                    method="POST"
-                    action="https://formspree.io/f/REPLACE_ME"
-                    novalidate
-                    aria-label="Gutschein einlösen Formular">
-
-                <!-- Gutscheincode -->
                 <div class="form-group">
                   <label class="form-label" for="gutschein-code">
                     Gutscheincode <span class="required-mark" aria-hidden="true">*</span>
                   </label>
-                  <input class="form-input" type="text" id="gutschein-code" name="gutscheinCode"
-                         required placeholder="z.&#8201;B. GW-2025-XXXX" autocomplete="off"
-                         aria-required="true">
+                  <input class="form-input" type="text" id="gutschein-code"
+                         placeholder="GW-GIN-2026-XXXXXXXX" autocomplete="off"
+                         aria-required="true" spellcheck="false">
                 </div>
 
-                <!-- Gutscheinart / Gutscheinname -->
-                <div class="form-group">
-                  <label class="form-label" for="gutschein-art">
-                    Gutscheinart / Gutscheinname <span class="required-mark" aria-hidden="true">*</span>
-                  </label>
-                  <input class="form-input" type="text" id="gutschein-art" name="gutscheinArt"
-                         required placeholder="z.&#8201;B. Käse &amp; Wein Gutschein oder Wertgutschein 50 €"
-                         aria-required="true">
-                  <span class="form-hint">Trage den Namen des Gutscheins ein, den Du erhalten hast.</span>
-                </div>
+                <p class="form-error" id="validate-error" aria-live="polite" hidden style="margin-top: 0.75rem;"></p>
 
-                <!-- Name + E-Mail -->
-                <div class="form-grid">
-                  <div class="form-group">
-                    <label class="form-label" for="name">
-                      Name <span class="required-mark" aria-hidden="true">*</span>
-                    </label>
-                    <input class="form-input" type="text" id="name" name="name"
-                           required autocomplete="name" aria-required="true">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="email">
-                      E-Mail-Adresse <span class="required-mark" aria-hidden="true">*</span>
-                    </label>
-                    <input class="form-input" type="email" id="email" name="email"
-                           required autocomplete="email" aria-required="true">
-                  </div>
-                </div>
+                <button class="btn btn--primary" id="btn-validate" type="button"
+                        style="width: 100%; justify-content: center; padding: 1rem; margin-top: 1.25rem;">
+                  Gutschein pr&uuml;fen
+                </button>
+              </div>
 
-                <!-- Telefon -->
-                <div class="form-group">
-                  <label class="form-label" for="telefon">Telefonnummer</label>
-                  <input class="form-input" type="tel" id="telefon" name="telefon"
-                         autocomplete="tel" placeholder="Optional">
-                </div>
-
-                <!-- Gewünschtes Tasting -->
-                <div class="form-group">
-                  <label class="form-label" for="tasting-type">
-                    Gewünschtes Tasting <span class="required-mark" aria-hidden="true">*</span>
-                  </label>
-                  <select class="form-select" id="tasting-type" name="tastingType"
-                          required aria-required="true">
-                    <option value="" disabled selected>Bitte w&auml;hlen &hellip;</option>
-                    <option value="Wein Tasting">Wein Tasting</option>
-                    <option value="Afterwork Wein Tasting">Afterwork Wein Tasting</option>
-                    <option value="Gin Tasting">Gin Tasting</option>
-                    <option value="Champagner &amp; Popcorn Tasting">Champagner &amp; Popcorn Tasting</option>
-                    <option value="Trueffel &amp; Champagner Tasting">Tr&uuml;ffel &amp; Champagner Tasting</option>
-                    <option value="Whisky Tasting">Whisky Tasting</option>
-                    <option value="Craft Beer Tasting">Craft Beer Tasting</option>
-                    <option value="Wagyu, Wein &amp; Champagner Tasting">Wagyu, Wein &amp; Champagner Tasting</option>
-                    <option value="Apero &amp; Antipasti Tasting">Ap&eacute;ro &amp; Antipasti Tasting</option>
-                  </select>
-                </div>
-
-                <!-- Bevorzugter Termin -->
-                <div class="form-group">
-                  <label class="form-label" for="termin">
-                    Bevorzugter Termin <span class="required-mark" aria-hidden="true">*</span>
-                  </label>
-                  <input class="form-input" type="date" id="termin" name="wunschtermin"
-                         required aria-required="true">
-                  <span class="form-hint">Sp&auml;ter werden hier verf&uuml;gbare feste Termine angezeigt. Aktuell pr&uuml;fen wir deinen Gutschein und best&auml;tigen dir den passenden Termin pers&ouml;nlich.</span>
-                </div>
-
-                <!-- Personenanzahl -->
-                <div class="form-group">
-                  <label class="form-label" for="personenanzahl">
-                    Personenanzahl <span class="required-mark" aria-hidden="true">*</span>
-                  </label>
-                  <select class="form-select" id="personenanzahl" name="personenanzahl"
-                          required aria-required="true">
-                    <option value="" disabled selected>Bitte wählen …</option>
-                    <option value="1">1 Person</option>
-                    <option value="2">2 Personen</option>
-                    <option value="4">4 Personen</option>
-                  </select>
-                </div>
-
-                <!-- Nachricht -->
-                <div class="form-group">
-                  <label class="form-label" for="nachricht">Nachricht / Hinweise</label>
-                  <textarea class="form-textarea" id="nachricht" name="nachricht" rows="4"
-                            placeholder="Besondere Wünsche, Unverträglichkeiten, bevorzugte Uhrzeit …"></textarea>
-                </div>
-
-                <!-- Error message (hidden) -->
-                <p class="form-error" id="form-error" aria-live="polite" style="display: none;"></p>
-
-                <!-- Submit -->
-                <button class="btn btn--primary" type="submit" style="width: 100%; justify-content: center; padding: 1rem;">
-                  Termin zur Einl&ouml;sung anfragen
+              <!-- ─── Schritt 2: Termin wählen ───────────────── -->
+              <div id="step-2" class="redemption-step" hidden>
+                <button class="step-back-btn" id="btn-back-1" type="button">
+                  &larr; Anderen Code eingeben
                 </button>
 
-                <!-- Privacy note -->
-                <p class="form-privacy">
-                  Mit dem Absenden des Formulars erklärst Du Dich einverstanden, dass wir Deine Angaben zur Bearbeitung Deiner Anfrage verwenden. Weitere Informationen findest Du in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
-                </p>
+                <div id="voucher-info" class="voucher-info"></div>
 
-              </form>
+                <p class="step-heading">Verf&uuml;gbaren Termin w&auml;hlen</p>
+
+                <div id="slots-list" class="slots-list"></div>
+                <p class="form-error" id="slots-error" aria-live="polite" hidden style="margin-top: 0.75rem;"></p>
+              </div>
+
+              <!-- ─── Schritt 3: Kontaktdaten ────────────────── -->
+              <div id="step-3" class="redemption-step" hidden>
+                <button class="step-back-btn" id="btn-back-2" type="button">
+                  &larr; Anderen Termin w&auml;hlen
+                </button>
+
+                <div id="chosen-slot-info" class="voucher-info"></div>
+
+                <p class="step-heading">Deine Kontaktdaten</p>
+                <p style="color: var(--color-text-muted); font-size: 0.9375rem; margin-bottom: 1.5rem;">Felder mit <span style="color: #C0392B;">*</span> sind Pflichtfelder.</p>
+
+                <form id="schedule-form" novalidate aria-label="Termin verbindlich buchen">
+
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label class="form-label" for="s-name">
+                        Name <span class="required-mark" aria-hidden="true">*</span>
+                      </label>
+                      <input class="form-input" type="text" id="s-name" name="name"
+                             required autocomplete="name" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="s-email">
+                        E-Mail-Adresse <span class="required-mark" aria-hidden="true">*</span>
+                      </label>
+                      <input class="form-input" type="email" id="s-email" name="email"
+                             required autocomplete="email" aria-required="true">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="s-telefon">Telefon</label>
+                    <input class="form-input" type="tel" id="s-telefon" name="telefon"
+                           autocomplete="tel" placeholder="Optional">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="s-adresse">Adresse</label>
+                    <input class="form-input" type="text" id="s-adresse" name="adresse"
+                           autocomplete="street-address" placeholder="Optional">
+                  </div>
+
+                  <p class="form-error" id="schedule-error" aria-live="polite" hidden style="margin-top: 0.75rem;"></p>
+
+                  <button class="btn btn--primary" type="submit"
+                          style="width: 100%; justify-content: center; padding: 1rem; margin-top: 1.25rem;">
+                    Termin verbindlich buchen
+                  </button>
+
+                  <p class="form-privacy">
+                    Mit dem Absenden erklärst du dich einverstanden, dass wir deine Angaben zur Buchungsabwicklung verwenden. Mehr in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+                  </p>
+
+                </form>
+              </div>
+
+              <!-- ─── Erfolgs-Screen ─────────────────────────── -->
+              <div class="form-success" id="form-success" role="alert" aria-live="polite">
+                <span class="form-success__icon" aria-hidden="true">&#10003;</span>
+                <p class="form-success__title">Termin gebucht!</p>
+                <p class="form-success__body" id="success-body">Dein Termin ist best&auml;tigt. Du erh&auml;ltst in K&uuml;rze eine Best&auml;tigung per E-Mail.</p>
+              </div>
+
             </div>
           </div>
 
@@ -256,9 +222,8 @@
           <aside class="redemption-sidebar" aria-label="Hinweise">
 
             <div class="sidebar-block">
-              <h3>Wichtiger Hinweis</h3>
-              <p>Das Absenden dieses Formulars ist <strong>keine verbindliche Terminbuchung</strong>. Wir pr&uuml;fen deinen Gutschein und melden uns pers&ouml;nlich mit einer Terminbest&auml;tigung.</p>
-              <span class="availability-note" style="margin-top: 0.5rem;">Pers&ouml;nliche Best&auml;tigung</span>
+              <h3>So funktioniert die Einl&ouml;sung</h3>
+              <p>Gutscheincode eingeben, verf&uuml;gbaren Termin w&auml;hlen und Kontaktdaten best&auml;tigen &mdash; du erh&auml;ltst direkt eine Buchungsbest&auml;tigung per E-Mail.</p>
             </div>
 
             <div class="sidebar-block">
@@ -338,6 +303,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/config.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/voucher-form.js"></script>
 </body>
