@@ -82,7 +82,7 @@ Deno.serve(async (req) => {
       cancel_url: `${websiteUrl}/tastings.html?checkout=cancelled`,
     })
 
-    return json({ session_url: session.url })
+    return json({ url: session.url })
   } catch (err) {
     console.error('create-checkout-session error:', err)
     return json({ error: 'INTERNAL_ERROR' }, 500)
