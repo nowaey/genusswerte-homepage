@@ -1,4 +1,3 @@
-import Stripe from 'https://esm.sh/stripe@14?target=deno'
 import { corsHeaders } from '../_shared/cors.ts'
 
 const TASTING_LABELS: Record<string, string> = {
@@ -25,62 +24,61 @@ const PRICE_PER_PERSON: Record<string, number> = {
   apero_antipasti_tasting:       2900,
 }
 
-interface CheckoutBody {
-  tasting_type: string
-  persons: number
-  customer_email?: string
-}
-
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
 
   try {
-    const body: CheckoutBody = await req.json()
-    const { tasting_type, persons } = body
+    const { tasting_type, persons, customer_email } = await req.json()
 
     if (!tasting_type || !PRICE_PER_PERSON[tasting_type]) {
       return json({ error: 'INVALID_TASTING_TYPE' }, 400)
     }
-
     if (!persons || persons < 1 || persons > 6 || !Number.isInteger(persons)) {
       return json({ error: 'INVALID_PERSONS' }, 400)
     }
 
-    const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY')!, {
-      apiVersion: '2024-04-10',
-    })
-
+    const stripeKey = Deno.env.get('STRIPE_SECRET_KEY')!
     const websiteUrl = Deno.env.get('WEBSITE_URL') ?? 'https://genusswerte-bonn.de'
     const unitAmount = PRICE_PER_PERSON[tasting_type]
     const label = TASTING_LABELS[tasting_type]
+    const personsLabel = `${persons} ${persons === 1 ? 'Person' : 'Personen'}`
 
-    const session = await stripe.checkout.sessions.create({
+    const params = new URLSearchParams({
       mode: 'payment',
-      payment_method_types: ['card'],
-      customer_email: body.customer_email,
-      line_items: [
-        {
-          price_data: {
-            currency: 'eur',
-            unit_amount: unitAmount,
-            product_data: {
-              name: `Tasting-Gutschein: ${label}`,
-              description: `Gutschein für ${persons} ${persons === 1 ? 'Person' : 'Personen'} — Termin wählst du nach Kauf`,
-            },
-          },
-          quantity: persons,
-        },
-      ],
-      metadata: {
-        tasting_type,
-        persons: String(persons),
-        product_type: 'tasting_voucher',
-      },
+      'payment_method_types[]': 'card',
+      'line_items[0][price_data][currency]': 'eur',
+      'line_items[0][price_data][unit_amount]': String(unitAmount),
+      'line_items[0][price_data][product_data][name]': `Tasting-Gutschein: ${label}`,
+      'line_items[0][price_data][product_data][description]': `Gutschein für ${personsLabel} — Termin wählst du nach Kauf`,
+      'line_items[0][quantity]': String(persons),
+      'metadata[tasting_type]': tasting_type,
+      'metadata[persons]': String(persons),
+      'metadata[product_type]': 'tasting_voucher',
       success_url: `${websiteUrl}/gutschein-einloesen.html?checkout=success`,
       cancel_url: `${websiteUrl}/tastings.html?checkout=cancelled`,
     })
+
+    if (customer_email) {
+      params.set('customer_email', customer_email)
+    }
+
+    const res = await fetch('https://api.stripe.com/v1/checkout/sessions', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${stripeKey}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: params.toString(),
+    })
+
+    const session = await res.json()
+
+    if (!res.ok) {
+      console.error('Stripe error:', session)
+      return json({ error: 'STRIPE_ERROR' }, 500)
+    }
 
     return json({ url: session.url })
   } catch (err) {
