@@ -242,7 +242,7 @@ async function sendConfirmationEmail(opts: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Genusswerte Bonn <gutscheine@genusswerte-bonn.de>',
+      from: 'Genusswerte Bonn <gutscheine@genusswerte-bonn.com>',
       to: [to],
       subject: `Dein Tasting-Gutschein: ${voucherCode}`,
       html,
