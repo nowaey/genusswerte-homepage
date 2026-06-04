@@ -7,5 +7,5 @@
    ========================================================= */
 
 window.GW_CONFIG = {
-  apiBase: 'https://DEIN-PROJEKT.supabase.co/functions/v1'
+  apiBase: 'https://dwreeykpjptfncjijjmg.supabase.co/functions/v1'
 };
