@@ -1,75 +1,69 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
-import { corsHeaders } from '../_shared/cors.ts'
+import { serve } from "https://deno.land/std@0.208.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-Deno.serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
-  }
+const cors = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
+
+function json(data: unknown, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { ...cors, "Content-Type": "application/json" },
+  });
+}
+
+serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
 
   try {
-    const { voucher_code } = await req.json()
+    const { voucher_code } = await req.json();
 
-    if (!voucher_code || typeof voucher_code !== 'string') {
-      return json({ error: 'INVALID_REQUEST' }, 400)
-    }
+    if (!voucher_code) return json({ error: "INVALID_VOUCHER_CODE" }, 400);
 
     const supabase = createClient(
-      Deno.env.get('SUPABASE_URL')!,
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
-    )
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
 
-    // Voucher laden um tasting_type und persons zu kennen
-    const { data: voucher, error: vErr } = await supabase
-      .from('vouchers')
-      .select('tasting_type, persons, status')
-      .eq('voucher_code', voucher_code.trim().toUpperCase())
-      .maybeSingle()
+    // Gutschein laden, um tasting_slug zu ermitteln
+    const { data: voucher } = await supabase
+      .from("vouchers")
+      .select("tasting_slug, status")
+      .eq("code", voucher_code.toUpperCase().trim())
+      .maybeSingle();
 
-    if (vErr) throw vErr
-
-    if (!voucher) {
-      return json({ error: 'VOUCHER_NOT_FOUND' }, 404)
+    if (!voucher || voucher.status !== "active") {
+      return json({ error: "VOUCHER_NOT_FOUND" }, 400);
     }
 
-    if (voucher.status !== 'active') {
-      return json({ error: 'VOUCHER_NOT_ACTIVE' }, 400)
+    if (!voucher.tasting_slug) {
+      return json({ error: "TASTING_SLUG_MISSING" }, 400);
     }
 
-    // Aktive Slots mit ausreichend Kapazität für zukünftige Daten
-    const today = new Date().toISOString().split('T')[0]
+    // Verfügbare Termine aus dem View laden
+    const { data: slots, error } = await supabase
+      .from("available_tasting_slots")
+      .select("id, slot_date, slot_time, remaining_capacity")
+      .eq("tasting_slug", voucher.tasting_slug)
+      .order("slot_date", { ascending: true })
+      .order("slot_time", { ascending: true });
 
-    const { data: slots, error: sErr } = await supabase
-      .from('tasting_slots')
-      .select('id, slot_date, slot_time, capacity_total, capacity_reserved, notes')
-      .eq('tasting_type', voucher.tasting_type)
-      .eq('status', 'active')
-      .gte('slot_date', today)
-      .order('slot_date', { ascending: true })
-      .order('slot_time', { ascending: true })
+    if (error) {
+      console.error("get-available-slots query:", error);
+      return json({ error: "UNKNOWN" }, 500);
+    }
 
-    if (sErr) throw sErr
+    const result = (slots || []).map((s) => ({
+      slot_id:         s.id,
+      slot_date:       s.slot_date,
+      slot_time:       String(s.slot_time).substring(0, 5), // HH:MM
+      available_seats: s.remaining_capacity,
+    }));
 
-    // Nur Slots mit genug freier Kapazität zurückgeben
-    const available = (slots ?? []).filter(
-      (s) => s.capacity_total - s.capacity_reserved >= voucher.persons,
-    ).map((s) => ({
-      id: s.id,
-      date: s.slot_date,
-      time: s.slot_time,
-      available_spots: s.capacity_total - s.capacity_reserved,
-      notes: s.notes ?? null,
-    }))
-
-    return json({ slots: available })
+    return json(result);
   } catch (err) {
-    console.error('get-available-slots error:', err)
-    return json({ error: 'INTERNAL_ERROR' }, 500)
+    console.error("get-available-slots:", err);
+    return json({ error: "UNKNOWN" }, 500);
   }
-})
-
-function json(body: unknown, status = 200) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-  })
-}
+});

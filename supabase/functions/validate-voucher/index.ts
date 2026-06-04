@@ -1,71 +1,64 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
-import { corsHeaders } from '../_shared/cors.ts'
+import { serve } from "https://deno.land/std@0.208.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-Deno.serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
-  }
+const cors = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
+
+function json(data: unknown, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { ...cors, "Content-Type": "application/json" },
+  });
+}
+
+serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
 
   try {
-    const { voucher_code } = await req.json()
+    const { voucher_code } = await req.json();
 
-    if (!voucher_code || typeof voucher_code !== 'string') {
-      return json({ valid: false, error: 'INVALID_REQUEST' }, 400)
+    if (!voucher_code || typeof voucher_code !== "string") {
+      return json({ valid: false, error: "INVALID_VOUCHER_CODE" }, 400);
     }
 
     const supabase = createClient(
-      Deno.env.get('SUPABASE_URL')!,
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
-    )
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
 
-    const { data, error } = await supabase
-      .from('vouchers')
-      .select('id, voucher_code, tasting_type, persons, status, valid_until')
-      .eq('voucher_code', voucher_code.trim().toUpperCase())
-      .maybeSingle()
+    const { data: voucher, error } = await supabase
+      .from("vouchers")
+      .select("id, code, status, persons, expires_at, tasting_slug, tastings(title)")
+      .eq("code", voucher_code.toUpperCase().trim())
+      .maybeSingle();
 
-    if (error) throw error
-
-    if (!data) {
-      return json({ valid: false, error: 'VOUCHER_NOT_FOUND' })
+    if (error || !voucher) {
+      return json({ valid: false, error: "VOUCHER_NOT_FOUND" });
     }
 
-    if (data.status === 'expired' || (data.valid_until && new Date(data.valid_until) < new Date())) {
-      return json({ valid: false, error: 'VOUCHER_EXPIRED' })
+    if (voucher.status === "redeemed" || voucher.status === "used") {
+      return json({ valid: false, error: "VOUCHER_ALREADY_RESERVED" });
+    }
+    if (voucher.status !== "active") {
+      return json({ valid: false, error: "VOUCHER_NOT_ACTIVE" });
+    }
+    if (voucher.expires_at && new Date(voucher.expires_at) < new Date()) {
+      return json({ valid: false, error: "VOUCHER_EXPIRED" });
     }
 
-    if (data.status === 'scheduled') {
-      return json({ valid: false, error: 'VOUCHER_ALREADY_RESERVED' })
-    }
-
-    if (data.status === 'checked_in') {
-      return json({ valid: false, error: 'VOUCHER_ALREADY_USED' })
-    }
-
-    if (data.status === 'cancelled') {
-      return json({ valid: false, error: 'VOUCHER_CANCELLED' })
-    }
-
-    if (data.status !== 'active') {
-      return json({ valid: false, error: 'VOUCHER_INVALID' })
-    }
+    const tastingRow = voucher.tastings as { title: string } | null;
+    const tastingName = tastingRow?.title || voucher.tasting_slug || "Tasting-Gutschein";
 
     return json({
       valid: true,
-      voucher_code: data.voucher_code,
-      tasting_type: data.tasting_type,
-      persons: data.persons,
-      valid_until: data.valid_until,
-    })
+      tasting_name: tastingName,
+      tasting_slug: voucher.tasting_slug,
+      persons: voucher.persons ?? 1,
+    });
   } catch (err) {
-    console.error('validate-voucher error:', err)
-    return json({ valid: false, error: 'INTERNAL_ERROR' }, 500)
+    console.error("validate-voucher:", err);
+    return json({ valid: false, error: "UNKNOWN" }, 500);
   }
-})
-
-function json(body: unknown, status = 200) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-  })
-}
+});
