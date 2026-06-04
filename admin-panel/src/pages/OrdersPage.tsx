@@ -51,7 +51,7 @@ export function OrdersPage() {
                       ? <StatusBadge status={o.fulfillment_status} label={FULFILLMENT_STATUS_LABELS[o.fulfillment_status]} />
                       : <span style={styles.dash}>—</span>}
                   </td>
-                  <td style={styles.td}>{(o.total_amount / 100).toFixed(2)} €</td>
+                  <td style={styles.td}>{Number(o.total_amount).toFixed(2)} €</td>
                   <td style={styles.td}>{o.item_count}</td>
                 </tr>
               ))}
