@@ -56,7 +56,7 @@ Deno.serve(async (req) => {
       'metadata[tasting_type]': tasting_type,
       'metadata[persons]': String(persons),
       'metadata[product_type]': 'tasting_voucher',
-      success_url: `${websiteUrl}/checkout-success.html?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${websiteUrl}/checkout-success.html`,
       cancel_url: `${websiteUrl}/tastings.html?checkout=cancelled`,
     })
 
